@@ -93,7 +93,7 @@
             
               <li class="archive-list-container">
                 <a href="javascript:;">Archive</a>
-                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">1</span></li></ul>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">2</span></li></ul>
               </li>
             
           
@@ -157,6 +157,146 @@
           <h1><a href="/archives/2019" class="archive-year">2019</a></h1>
         </div>
         <div class="post-list">
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2019/10/26/%E4%BD%BF%E7%94%A8Github%E5%92%8CHexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/" >
+  使用Github和Hexo搭建自己的博客
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2019/10/26/%E4%BD%BF%E7%94%A8Github%E5%92%8CHexo%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8D%9A%E5%AE%A2/"><span class="article-date">
+  2019-10-26
+</span>
+</a>
+        
+
+        
+
+      </div>
+      <div class="article-entry">
+        
+          <h1 id="使用Github和Hexo搭建自己的博客"><a href="#使用Github和Hexo搭建自己的博客" class="headerlink" title="使用Github和Hexo搭建自己的博客"></a>使用Github和Hexo搭建自己的博客</h1><h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>这是一篇关于如何使用 Github Pages 和 Hexo 搭建小白独立博客的文章。里面有一些博主遇到的小问题，只要踏踏实实跟着教程走，自己的博客就在向你挥挥手哦！Github Pages可以被认为是用户编写的、托管在github上的静态网页。使用Github Pages可以为你提供一个免费的服务器，免去了自己搭建服务器和写数据库的麻烦。此外还可以绑定自己的域名。Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+<p>此文章参考：<a href="https://blog.csdn.net/qq_36759224/article/details/82121420" target="_blank" rel="noopener">https://blog.csdn.net/qq_36759224/article/details/82121420</a></p>
+<h2 id="二、下载NODE-GIT-HEXO"><a href="#二、下载NODE-GIT-HEXO" class="headerlink" title="二、下载NODE+GIT+HEXO"></a>二、下载NODE+GIT+HEXO</h2><h3 id="（1）下载node-js"><a href="#（1）下载node-js" class="headerlink" title="（1）下载node.js"></a>（1）下载node.js</h3><p>官网下载网址：<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a> ，根据自己情况选择版本，默认设置即可。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY0ODFkMzc0MC5wbmc" alt="img"></p>
+<h3 id="（2）下载Git"><a href="#（2）下载Git" class="headerlink" title="（2）下载Git"></a>（2）下载Git</h3><p>下载地址：<a href="https://git-scm.com/download/win" target="_blank" rel="noopener">https://git-scm.com/download/win</a> 默认下载。</p>
+<p>检验Git是否安装成功：</p>
+<p>（1）打开cmd，输入以下指令，有相应版本信息显示即安装成功。</p>
+<p><code>git --version</code></p>
+<p><code>node -v</code></p>
+<p><code>npm -v</code></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY0ZWU4YTc5NC5wbmc" alt="img"></p>
+<p>（2）若安装成功，在桌面右键鼠标，可以看到菜单多了Git GUI Here 和 Git Bash Here两个选项。第一个是图形界面的Git操作，第二个是命令行。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY1MGVjMjA5Mi5wbmc" alt="img"></p>
+<h3 id="3-安装Hexo"><a href="#3-安装Hexo" class="headerlink" title="(3)安装Hexo"></a>(3)安装Hexo</h3><p>（1）选择一个磁盘，新建一个文件夹，自己重命名文件夹（如：我的文件夹为：Ｅ\KIKICHUANG-Q_Blog），博客相关文件将储存在此文件夹下。</p>
+<p>（2）在该文件夹下右键鼠标，点击 Git Bash Here，输入以下 npm 命令即可安装。</p>
+<p>第一个命令表示安装 hexo，第二个命令表示安装 hexo 部署到 git page 的 deployer，如图所示即为安装成功。</p>
+<p><code>npm install hexo-cli -g  
+npm install hexo-deployer-git --save</code> </p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY1M2Q0YjAxOS5wbmc" alt="img"></p>
+<p>（3）初始化Hexo</p>
+<p>在刚才新建的文件夹里面再次新建一个 Hexo 文件夹（如：我的文件夹为：E\TRHX_Blog\Hexo）,进入该 Hexo 文件夹右键鼠标，点击 Git Bash Here，输入以下命令，如图所示则安装成功。</p>
+<p><code>hexo init</code></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY1NjZiNGI2Yi5wbmc" alt="img"></p>
+<p>（4）检查</p>
+<p>Hexo安装完成后，将会在指定文件夹中新建所需要的文件，Hexo 文件夹下的目录如下：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY1OGQyZWVlNS5wbmc" alt="img"></p>
+<h2 id="三、本地查看效果"><a href="#三、本地查看效果" class="headerlink" title="三、本地查看效果"></a>三、本地查看效果</h2><p>执行以下命令，执行完即可登录 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 查看效果</p>
+<p><code>hexo generate  
+hexo server</code> </p>
+<p>显示以下说明成功：</p>
+<p> <code>INFO Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.</code></p>
+<p>登录 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 查看效果：<img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY1YjdjNzRkMi5wbmc" alt="img"></p>
+<h2 id="四、将博客部署到GIthub-Pages上"><a href="#四、将博客部署到GIthub-Pages上" class="headerlink" title="四、将博客部署到GIthub Pages上"></a>四、将博客部署到GIthub Pages上</h2><p>我们的本地博客就成功搭建了，但是现在我们只能通过本地连接查看博客，我们要做的是让其他人也能够访问我们的博客，这就需要我们将博客部署到Github Pages上。</p>
+<h3 id="（1）注册Github账户"><a href="#（1）注册Github账户" class="headerlink" title="（1）注册Github账户"></a>（1）注册Github账户</h3><p>官网：<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a> </p>
+<p>点击sign up注册</p>
+<h3 id="（2）创建项目代码库"><a href="#（2）创建项目代码库" class="headerlink" title="（2）创建项目代码库"></a>（2）创建项目代码库</h3><p>点击 New repository 开始创建，步骤及注意事项见下图：<strong>（万分注意：一定要以 ”你的用户名.github.io”格式命名！博主当时漏了.io导致不匹配，网站404，重新再在这一步修改了回来才解决，所以千万记得格式严谨！！！！！!）</strong></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY1ZTA5MzBjMi5wbmc" alt="img"></p>
+<h3 id="（3）配置SSH密钥"><a href="#（3）配置SSH密钥" class="headerlink" title="（3）配置SSH密钥"></a>（3）配置SSH密钥</h3><p>在你第一次新建的文件夹里面（如：我的文件夹为：Ｅ\KIKICHUANG-Q_Blog） Git Bash Here 输入以下命令：</p>
+<p><code>ssh-keygen -t rsa -C &quot;your email@example.com&quot;</code><br><code>//引号里面填写你的邮箱地址，比如我的是903822154@qq.com</code></p>
+<p>之后会出现：</p>
+<p> <code>Generating public/private rsa key pair.  
+Enter file in which to save the key (/c/Users/you/.ssh/id_rsa):  
+//到这里可以直接回车将密钥按默认文件进行存储</code></p>
+<p>然后：</p>
+<p><code>Enter passphrase (empty for no passphrase):</code><br>//这里是要你输入密码，其实不需要输什么密码，直接回车就行<br><code>Enter same passphrase again:</code>  </p>
+<p>//再回车</p>
+<p>接下来会显示：</p>
+<p> <code>Your identification has been saved in /c/Users/you/.ssh/id_rsa.  
+Your public key has been saved in /c/Users/you/.ssh/id_rsa.pub.  
+The key fingerprint is:</code><br>这里是各种字母数字组成的字符串，结尾是你的邮箱<br><code>The key&#39;s randomart image is:</code><br>这里也是各种字母数字符号组成的字符串  </p>
+<p>运行下列命令：（将公钥的内容复制到系统粘贴板上）</p>
+<p> <code>clip &lt; ~/.ssh/id_rsa.pub</code></p>
+<h3 id="5-在Github账户添加你的公钥"><a href="#5-在Github账户添加你的公钥" class="headerlink" title="(5)在Github账户添加你的公钥"></a>(5)在Github账户添加你的公钥</h3><p>（1） 登陆 GitHub，进入 Settings：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY2MDZlNzU1OC5wbmc" alt="img"></p>
+<p>（2)点击 SSH and GPG Keys：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY2MjJiNDU4OC5wbmc" alt="img"></p>
+<p>(3)选择 New SSH key：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY2M2ViMWFiMi5wbmc" alt="img"></p>
+<p>(4)粘贴密钥：<img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY2YmMxZmM4Ny5wbmc" alt="img"></p>
+<h3 id="5-测试"><a href="#5-测试" class="headerlink" title="(5)测试"></a>(5)测试</h3><p>输入以下命令：注意：<a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>不要做任何更改！</p>
+<p><code>ssh -T git@github.com</code></p>
+<p>之后：<img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY2ZTNiNDgwMy5wbmc" alt="img"></p>
+<p>YES之后：</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY3MDJjNDZkNi5wbmc" alt="img"></p>
+<p>则OK！</p>
+<h3 id="（6）配置-Git-个人信息"><a href="#（6）配置-Git-个人信息" class="headerlink" title="（6）配置 Git 个人信息"></a>（6）配置 Git 个人信息</h3><p>Git 会根据用户的名字和邮箱来记录提交，GitHub 也是用这些信息来做权限的处理，输入以下命令进行个人信息的设置，把名称和邮箱替换成你自己的，名字可以不是 GitHub 的昵称，但为了方便记忆，建议与 GitHub 一致。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"此处填你的用户名"</span>  </span><br><span class="line">git config --global user.email  <span class="string">"此处填你的邮箱"</span></span><br></pre></td></tr></table></figure>
+
+<p>OK!！ Key 配置成功，本机已成功连接到 Github！</p>
+<h2 id="五、将本地的-Hexo-文件更新到-Github-的库中"><a href="#五、将本地的-Hexo-文件更新到-Github-的库中" class="headerlink" title="五、将本地的 Hexo 文件更新到 Github 的库中"></a>五、将本地的 Hexo 文件更新到 Github 的库中</h2><p>① 登录 Github 打开自己的项目 your name.github.io</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY3MjBjY2FlMC5wbmc" alt="img"></p>
+<p>② 鼠标移到 Clone or download 按钮，选择Use SSH<img src="https://img-blog.csdnimg.cn/20190816220246218.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzU5MjI0,size_16,color_FFFFFF,t_70" alt="img"> </p>
+<p>③ 一键复制地址<img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY3NmNiM2RhNC5wbmc" alt="img"></p>
+<p>④ 打开你创建的 Hexo 文件夹（如：E:\KIKICHUANG-Q\Hexo），右键用记事本（Notepad++或者VS code等都可以）打开该文件夹下的 _config.yml 文件</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY3OGI4YmEzZS5wbmc" alt="img"></p>
+<p><strong>⑤ 按下图修改 _config.yml 文件并保存</strong></p>
+<p>这一步很关键！！！！！！！</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDMvMjUvNWM5OGY3ZTExZWVkNy5wbmc" alt="img"></p>
+<p> <strong><em>保险起见可以复制以下的成功代码：</em></strong></p>
+<p>deploy:<br>  type: git<br>  repository:<br>  branch: master</p>
+<p>⑥ 在 Hexo 文件夹下分别执行以下命令</p>
+<p> <code>hexo g</code></p>
+<p><code>hexo d</code></p>
+<p>//或者直接</p>
+<p><code>hexo g -d</code></p>
+<p>执行完之后会让你输入你的 Github 的账号和密码，如果此时报以下错误，说明你的 deployer 没有安装成功。</p>
+<p><code>ERROR Deployer not found: git</code></p>
+<p>需要执行以下命令再安装一次：</p>
+<p><code>npm install hexo-deployer-git --save</code></p>
+<p>再执行 ：</p>
+<p><code>hexo g</code></p>
+<p><code>hexo d</code></p>
+<p>你的博客就会部署到 Github 上了。</p>
+<p>⑦ 访问博客</p>
+<p>你的博客地址<strong>：https://你的用户名.github.io，</strong>比如我的是：<a href="https://KIKICHUANG-Q.github.io,现在每个人都可以通过此链接访问你的博客了。" target="_blank" rel="noopener">https://KIKICHUANG-Q.github.io,现在每个人都可以通过此链接访问你的博客了。</a></p>
+<h2 id="六、在博客上发表文章"><a href="#六、在博客上发表文章" class="headerlink" title="六、在博客上发表文章"></a>六、在博客上发表文章</h2><p>（1）新建一个空文章，输入以下命令，会在项目 \Hexo\source_posts 中生成 文章标题.md 文件，文章标题根据需要命名</p>
+<p><code>hexo n &quot;文章标题&quot;</code></p>
+<p>//或者：</p>
+<p>直接在 <strong>\Hexo\source_posts</strong> 目录下右键鼠标新建文本文档，<strong>改后缀为 .md</strong> 即可，这种方法比较方便（推荐）</p>
+<p>（1）用编辑器编写文章</p>
+<p>md 全称 Markdown， Markdown 是 2004 年由 John Gruberis 设计和开发的纯文本格式的语法，非常的简单实用，常用的标记符号屈指可数，几分钟即可学会， <strong>.md 文件</strong>以使用支持 Markdown 语法的编辑器编辑，然后<strong>保存文件到 \Hexo\source_posts 文件夹下</strong>即可。</p>
+<p>（3）当我们用编辑器写好文章后，可以使用以下命令将其推送到服务器上。</p>
+<p><code>hexo g</code></p>
+<p><code>hexo d</code></p>
+<p>//或者</p>
+<p><code>hexo d -g</code></p>
+<h3 id="Last：OKKK！现在访问你的专属博客即可见你写的文章啦！！！"><a href="#Last：OKKK！现在访问你的专属博客即可见你写的文章啦！！！" class="headerlink" title="Last：OKKK！现在访问你的专属博客即可见你写的文章啦！！！"></a>Last：OKKK！现在访问你的<strong>专属博客</strong>即可见你写的文章啦！！！</h3><h2 id="七、美化"><a href="#七、美化" class="headerlink" title="七、美化"></a>七、美化</h2><p>如果想让你的博客更加special的话，你可以登录Hexo官网，选择自己喜爱的主题进行更换，接下来就是慢慢码字学习的过程啦！</p>
+
+        
+      </div>
+    </div>
+
+  
+
+  
+  
     
   
 
