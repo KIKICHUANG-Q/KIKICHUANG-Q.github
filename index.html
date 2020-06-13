@@ -93,7 +93,7 @@
             
               <li class="archive-list-container">
                 <a href="javascript:;">Archive</a>
-                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li></ul>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li></ul>
               </li>
             
           
@@ -146,6 +146,920 @@
         <div style="max-width: 1000px">
       
           
+
+  
+  
+    <div class="post-list">
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2020/06/13/%E9%93%BE%E8%A1%A8/" >
+  链表
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2020/06/13/%E9%93%BE%E8%A1%A8/"><span class="article-date">
+  2020-06-13
+</span>
+</a>
+        
+
+        
+
+      </div>
+      <div class="article-entry">
+        
+          <h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><h3 id="1-首先得要有两个基本的头文件"><a href="#1-首先得要有两个基本的头文件" class="headerlink" title="1.首先得要有两个基本的头文件"></a>1.首先得要有两个基本的头文件</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;       //用于scanf, printf 标准输入输出 #include&lt;stdlib.h&gt;      //用于malloc, free 内存申请及释放</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-再然后得要有个结构体"><a href="#2-再然后得要有个结构体" class="headerlink" title="2.再然后得要有个结构体"></a>2.再然后得要有个结构体</h3><blockquote>
+<p>一个节点就像火车的一节车厢, data是车厢里面的东西, next相当于一个钩子, 用于将车厢之间的连接起来</p>
+</blockquote>
+<p><img src="https://img-blog.csdn.net/20180824225044595?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L01yX0hDVw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span>          //<span class="title">typedef</span> 用于取<span class="title">struct</span> <span class="title">node</span> 的别名</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">        <span class="keyword">int</span> data;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;*PNODE,NODE;                <span class="comment">//别名*PNODE 就是 struct node *   别名NODE就是 struct node</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-这部分是函数前置声明"><a href="#3-这部分是函数前置声明" class="headerlink" title="3. 这部分是函数前置声明"></a>3. 这部分是函数前置声明</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">PNODE <span class="title">init</span><span class="params">()</span></span>;                           <span class="comment">//链表初始化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(PNODE head, <span class="keyword">int</span> newdata)</span></span>;   <span class="comment">//插入节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(PNODE head)</span></span>;                 <span class="comment">//打印整个链表</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">freeAllNode</span><span class="params">(PNODE head)</span></span>;           <span class="comment">//释放整个链表的内存</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-链表初始化"><a href="#4-链表初始化" class="headerlink" title="4.链表初始化"></a>4.链表初始化</h3><blockquote>
+<p>定义一个节点, 其在整个链表操作中都不存储数据, 比较特殊, 与head直接相连</p>
+</blockquote>
+<p><img src="https://img-blog.csdn.net/20180824225744685?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L01yX0hDVw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">PNODE <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;	PNODE temp = (PNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));  <span class="comment">//定义一个节点	</span></span><br><span class="line">             temp-&gt;next = <span class="literal">NULL</span>;                    <span class="comment">//这个节点比较特殊, 它不用于存储数据	</span></span><br><span class="line"> <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>////剩下的看程序即可。</p>
+<h1 id="关于创建单链表-createlink"><a href="#关于创建单链表-createlink" class="headerlink" title="关于创建单链表(createlink)"></a>关于创建单链表(createlink)</h1><h3 id="1-Head"><a href="#1-Head" class="headerlink" title=" 1 Head"></a> 1 Head</h3><p> 如果想得到创建后的链表，我们显然需要知道他的头在哪。</p>
+<p>因此在Createlink()函数中，需要返回head(也就是这条链子的头部)，这样顺着头我们就可以一直找到链表的每一个元素，直到尾部(p若为最后一个链结的话，那么p-&gt;next==NULL)。</p>
+<p> <img src="https://img-blog.csdnimg.cn/20200407211022740.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NwcmltZXNwbHVz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"> </p>
+<p> 因为需要返回head这个指针 </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">struct node *<span class="title">createlink</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//.....这些是创建的过程</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> head;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>返回值类型搞定之后，我们便可以进入创建链表的环节.</p>
+<h3 id="2-创造链表"><a href="#2-创造链表" class="headerlink" title="2.创造链表"></a>2.创造链表</h3><p><strong>单链表分为两种：</strong><br>（1）不带头节点 的链表：</p>
+<p>此种链表的head即保存第一个数据，</p>
+<p>访问时从head开始，不利于删除或者添加指定位置数据的操作。<br>（2）带头节点 的链表：</p>
+<p>此种链表保存数据是从head-&gt;next开始的，head中并未保存有数据，</p>
+<p>访问时自然<strong>head-&gt;next</strong>开始，优点就是方便操作。</p>
+<p><strong>这里先以不带头节点的链表的创建为例</strong></p>
+<p>（我采用创建链表的方法叫做尾插法——每新建立一个节点，都把它放到现有链表的尾部）<br>  首先，我们需要有一个结构体指针来保存头节点，方便于之后的使用，所以：struct node <em>head;<br>  注意：这里的head是不能变的，,*</em>不变的意思不是他的值不变，而是他永远固定在链表的首位，作为链表的头部**，方便之后的索引。<br>  因此，当我们每新加入一个元素时，不是直接更新head的值。不妨用一个结构体指针pnew来记录新加入的值，通过旧节点pend与新节点的相连来构造一个链表，示意图如下：</p>
+<p><img src="https://img-blog.csdn.net/20180910122645943?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NwcmltZXNwbHVz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>​        显然，pend所指向的单位，实际就是上一次的pnew（可以理解为，pnew作为新元素被成功加入到链表之后，它便变成了旧节点，两个字概括为：<strong>更替</strong>）</p>
+<p>  欸？是不是还有一个变量忘了声明？没错，那就是整型n，用来表示新加入的值。这样我们便可以<strong>通过输入n并且给节点赋值，只要输入不为-1，那么继续进行输入</strong>，否则终止循环。</p>
+<h4 id="不带头节点单链表代码的实现："><a href="#不带头节点单链表代码的实现：" class="headerlink" title="不带头节点单链表代码的实现："></a><strong>不带头节点单链表代码的实现：</strong></h4><p>  首先，我们定义head,最初的时候链表还没有添加元素，因此head=NULL;<br>  然后，输入一个元素代表将要添加的值。判断元素是否符合条件（这里以元素&gt;=0为条件），如果满足，就进入添加环节。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num);</span><br><span class="line"><span class="keyword">while</span>(num&gt;=<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//操作</span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num);</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">123456</span></span><br></pre></td></tr></table></figure>
+
+<p>在循环中，因为要添加值，所以要先为pnew分配内存，这样才能对pnew进行赋值操作。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pnew=(struct node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(struct node));</span><br><span class="line">pnew-&gt;num=num;</span><br><span class="line">pnew-&gt;next=<span class="literal">NULL</span>; <span class="comment">//新创建的指针的下一个位置还没有定</span></span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<p>  因为我们想要创建不带头节点的单链表，因此如果是第一次添加值（第一次添加的判断是，如果head指向NULL，证明还未加入元素），那么head就应该指向pnew的位置，然后pnew（也就是head）的位置变为旧位置pend。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(head==<span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">	head=pnew;</span><br><span class="line">	pend=head;</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">12345</span></span><br></pre></td></tr></table></figure>
+
+<p>  如果不是第一次添加了，那么此时存放旧地址的就应该是pend，观察上图，只需要如下操作进行连接就可以了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">	pend-&gt;next=pnew;</span><br><span class="line">	pend=pnew;<span class="comment">//一定注意，操作的位置是内存</span></span><br><span class="line">	<span class="comment">//因此进行上面一步之后，pend-&gt;next这块内存已经有了指向</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="number">12345</span></span><br></pre></td></tr></table></figure>
+
+<p>这样，便成功创建了不带头节点的单链表。</p>
+<p><strong>完整代码</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num);</span><br><span class="line"><span class="keyword">while</span>(num&gt;=<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">	pnew=(struct node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(struct node));</span><br><span class="line">	pnew-&gt;num=num;</span><br><span class="line">	pnew-&gt;next=<span class="literal">NULL</span>; <span class="comment">//新创建的指针的下一个位置还没有定</span></span><br><span class="line">	<span class="keyword">if</span>(head==<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		head=pnew;</span><br><span class="line">		pend=head;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		pend-&gt;next=pnew;</span><br><span class="line">		pend=pnew;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num);</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">123456789101112131415161718</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="带头节点单链表代码的实现："><a href="#带头节点单链表代码的实现：" class="headerlink" title="带头节点单链表代码的实现："></a><strong>带头节点单链表代码的实现：</strong></h4><p>  带有头节点的单链表创立，只需稍微改变代码即可。<br>  既然是带有头节点，那么头节点里肯定是不需要赋值的，因此在创建时，我们直接最开始就让头节点作为旧节点，这样头节点就可以不用被赋值了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">head=(struct node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(struct node));</span><br><span class="line">head-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">pend=head;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">While(n!=<span class="number">-1</span>)</span><br><span class="line">&#123;</span><br><span class="line">	pnew=(struct node *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(struct node));	<span class="comment">//这里一定要为pnew开辟内存！</span></span><br><span class="line">	<span class="comment">//想象一下，你无法int *a;后直接赋值a=3;必须先分配内存，同理。</span></span><br><span class="line">	pnew-&gt;num=n;</span><br><span class="line">	pnew-&gt;next=<span class="literal">NULL</span>;<span class="comment">//新节点指向空，因为后面还没有元素加入</span></span><br><span class="line">	pend-&gt;next=pnew;	<span class="comment">//旧节点的指针指向新节点</span></span><br><span class="line">	pend=pnew;		<span class="comment">//新节点变为旧节点</span></span><br><span class="line">	<span class="built_in">scanf</span>(“%d”,&amp;n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+      </div>
+    </div>
+
+  
+    </div>
+  
+
+  
+  
+    <div class="post-list">
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2020/06/13/%E6%90%AD%E5%BB%BAKaillinux/" >
+  搭建Kaillinux
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2020/06/13/%E6%90%AD%E5%BB%BAKaillinux/"><span class="article-date">
+  2020-06-13
+</span>
+</a>
+        
+
+        
+
+      </div>
+      <div class="article-entry">
+        
+          <h1 id="搭建Kaillinux"><a href="#搭建Kaillinux" class="headerlink" title="搭建Kaillinux"></a>搭建Kaillinux</h1><p>1.注意安装时内存分派2G 磁盘分配要大（50G）</p>
+<p>2.注意删掉打印机 USB 和下面那个 共三个并且选择NAT网络</p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200603222633006.png" alt="image-20200603222633006"></p>
+<ol start="3">
+<li><p>虚拟机系统类型选择“Linux”和“Debian 10.x 64位”。</p>
+</li>
+<li><p>安装引导中，网络镜像不要勾选“是”。</p>
+</li>
+<li><p>初次安装完成系统后应在虚拟机中建立一次快照。</p>
+</li>
+<li><p>Kali系统强大到可以为所欲为，谨记熟读“中华人民共和国网络安全法”</p>
+</li>
+<li><p>后续按最新时间的教程进行即可</p>
+<p><a href="https://baijiahao.baidu.com/s?id=1645570899186843456&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1645570899186843456&amp;wfr=spider&amp;for=pc</a> </p>
+</li>
+</ol>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200603223444368.png" alt="image-20200603223444368"></p>
+
+        
+      </div>
+    </div>
+
+  
+    </div>
+  
+
+  
+  
+    <div class="post-list">
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2020/06/13/%E6%90%AD%E5%BB%BADWVA%E7%8E%AF%E5%A2%83/" >
+  搭建DWVA环境
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2020/06/13/%E6%90%AD%E5%BB%BADWVA%E7%8E%AF%E5%A2%83/"><span class="article-date">
+  2020-06-13
+</span>
+</a>
+        
+
+        
+
+      </div>
+      <div class="article-entry">
+        
+          <h1 id="搭建DWVA环境"><a href="#搭建DWVA环境" class="headerlink" title="搭建DWVA环境"></a>搭建DWVA环境</h1><p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200603205404397.png" alt="image-20200603205404397"></p>
+<p>在这个练习中，我们将配置Damn Vulnerable Web Application (DVWA)。-&gt;很脆弱的应用。</p>
+<p>这个应用程序有若干基于web的漏洞，比如跨站脚本 (XSS), SQL注入, CSRF,命令注入等。</p>
+<p>下面的步骤会帮你安装一个web服务器，并运行应用程序。</p>
+<blockquote>
+<p>1、下载XAMPP</p>
+<p>现在并安装XAMPP<a href="https://www.apachefriends.org/download.html，windowsXP[https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/1.8.2/xampp-win32-1.8.2-6-VC9-installer.exe/download]" target="_blank" rel="noopener">https://www.apachefriends.org/download.html，windowsXP[https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/1.8.2/xampp-win32-1.8.2-6-VC9-installer.exe/download]</a>(<a href="https://sourceforge.net/projects/xampp/files/XAMPP" target="_blank" rel="noopener">https://sourceforge.net/projects/xampp/files/XAMPP</a> Windows/1.8.2/xampp-win32-1.8.2-6-VC9-installer.exe/download)</p>
+<p>一旦安装了XAMPP，到控制面板</p>
+<p>打开service和点Start，开启Apache和MySql服务。</p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200603212414573.png" alt="image-20200603212414573"></p>
+<p>2、下载DVWA应用程序</p>
+<p>解压文件到一个新的文件夹中，命名为“dvwa”。</p>
+<p><a href="http://www.dvwa.co.uk/" target="_blank" rel="noopener">http://www.dvwa.co.uk/</a></p>
+<p>4、打开“C:\xampp\htdocs”文件夹，把该文件夹里的内容移动到另外一个地方。</p>
+<p>5、把“dvwa”文件夹拷贝到“C:\xampp\htdocs”目录。</p>
+<p>6、在浏览器的地址栏中输入下面的内容并访问：<a href="http://127.0.0.1/dvwa/login.php" target="_blank" rel="noopener">http://127.0.0.1/dvwa/login.php</a></p>
+</blockquote>
+<p>PS：注意下载匹配版本！</p>
+<p>//意外：XAMPP下载了x32位，重装x64位</p>
+
+        
+      </div>
+    </div>
+
+  
+    </div>
+  
+
+  
+  
+    <div class="post-list">
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2020/06/13/%E5%AE%89%E5%85%A8%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/" >
+  安全常见术语
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2020/06/13/%E5%AE%89%E5%85%A8%E5%B8%B8%E8%A7%81%E6%9C%AF%E8%AF%AD/"><span class="article-date">
+  2020-06-13
+</span>
+</a>
+        
+
+        
+
+      </div>
+      <div class="article-entry">
+        
+          <h1 id="安全常见术语"><a href="#安全常见术语" class="headerlink" title="安全常见术语"></a>安全常见术语</h1><h4 id="webshell"><a href="#webshell" class="headerlink" title="webshell"></a>webshell</h4><p>通过Web入侵的一种脚本工具，可以据此对网站服务进行一定程度的控制。</p>
+<h4 id="一句话木马"><a href="#一句话木马" class="headerlink" title="一句话木马"></a>一句话木马</h4><p>通过向服务端提交一句简短的代码，配合本地客户端实现webshell功能的木马 </p>
+<h4 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h4><p>（asp，php，jsp，py，c，java等语言编写出的漏洞利用文件） </p>
+<h4 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h4><p>url是统一资源定位符，就是我们常说的网址，对可以从互联网上得到的资源的位置和访问方法的一种简洁的表示，是互联网上标准资源的地址。互联网上的每个文件都有一个唯一的URL，它包含的信息指出文件的位置以及浏览器应该怎么处理它 </p>
+<h4 id="http请求"><a href="#http请求" class="headerlink" title="http请求"></a>http请求</h4><p>GET： 请求指定的页面信息，并返回实体主体。  HEAD： 只请求页面的首部。 </p>
+<p>POST： 请求服务器接受所指定的文档作为对所标识的URI的新的从属实体。  </p>
+<p>PUT： 从客户端向服务器传送的数据取代指定的文档的内容。</p>
+<p>DELETE： 请求服务器删除指定的页面。  OPTIONS： 允许客户端查看服务器的性能。  TRACE： 请求服务器在响应中的实体主体部分返回所得到的内容。  </p>
+<p>PATCH： 实体中包含一个表，表中说明与该URI所表示的原内容的区别。  </p>
+<p>MOVE： 请求服务器将指定的页面移至另一个网络地址。 </p>
+<p>COPY： 请求服务器将指定的页面拷贝至另一个网络地址。  </p>
+<p>LINK： 请求服务器建立链接关系。</p>
+<p> UNLINK： 断开链接关系。 </p>
+<p> WRAPPED：允许客户端发送经过封装的请求。  Extension-mothed：在不改动协议的前提下，可增加另外的方法。   </p>
+<p>后门</p>
+<p>房子=服务器 大门=正常权限 洞=后门</p>
+<p>跳板</p>
+<p>使用肉鸡ip实现攻击其他目标，隐藏身份</p>
+<h4 id="旁站"><a href="#旁站" class="headerlink" title="旁站"></a>旁站</h4><p> 即同服务器下的网站入侵，入侵之后可以通过提权跨目录等手段拿到目标网站的权限。常见的旁站查询工具有：WebRobot、御剑、明小子和web在线查询等 </p>
+<h4 id="c段"><a href="#c段" class="headerlink" title="c段"></a>c段</h4><p>即同C段下服务器入侵。如目标IP为192.168.1.253入侵192.168.1.*的任意一台机器，然后利用一些黑客工具嗅探获取在网络上传输的各种信息。常见的工具有：在Windows下有Cain，在Unix 环境下有Sniffit,Snoop,Tcpdump，Dsniff等 。</p>
+<h4 id="APT"><a href="#APT" class="headerlink" title="APT"></a>APT</h4><p>能对系统造成破坏或者攻击系统的BUG。</p>
+<h4 id="0day"><a href="#0day" class="headerlink" title="0day"></a>0day</h4><p>被发现且一般有exp ，官方未发布way的vul。</p>
+<h4 id="1day"><a href="#1day" class="headerlink" title="1day"></a>1day</h4><p>0day官方刚发布，网络上还大量存在的Vul。</p>
+<h4 id="Nday"><a href="#Nday" class="headerlink" title="Nday"></a>Nday</h4><p>已经被公布出来的0day。</p>
+<h4 id="POC"><a href="#POC" class="headerlink" title="POC"></a>POC</h4><p>Proof of concept，能证明漏洞存在的代码。</p>
+<h4 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h4><p>expliot，能获取shell的poc。</p>
+<h4 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h4><p>攻击载荷，被送到目标机器的整段代码。</p>
+<h4 id="shellcode"><a href="#shellcode" class="headerlink" title="shellcode"></a>shellcode</h4><p>payload中 能注入存在漏洞的程序、能获取shell的那段二进制代码。一般在缓冲区漏洞溢出。</p>
+<h4 id="Waf"><a href="#Waf" class="headerlink" title="Waf"></a>Waf</h4><p>WebapplicationFirewall Web应用防护系统。</p>
+<h4 id="Cve"><a href="#Cve" class="headerlink" title="Cve"></a>Cve</h4><p>CVE 的英文全称是“Common Vulnerabilities &amp; Exposures”公共漏洞和暴露。CVE就好像是一个字典表，为广泛认同的信息安全漏洞或者已经暴露出来的弱点给出一个公共的名称。使用一个共同的名字，可以帮助用户在各自独立的各种漏洞数据库中和漏洞评估工具中共享数据，虽然这些工具很难整合在一起。这样就使得CVE成为了安全信息共享的“关键字”。如果在一个漏洞报告中指明的一个漏洞，如果有CVE名称，你就可以快速地在任何其它CVE兼容的数据库中找到相应修补的信息，解决安全问题。 </p>
+<h4 id="CVSS"><a href="#CVSS" class="headerlink" title="CVSS"></a>CVSS</h4><p>CVSS是旨在给人们提供一种漏洞严重性量化方法，当前已更新到第三个版本。</p>
+<p>更直观了解可直接使用评分计算器：<a href="https://www.first.org/cvss/calculator/3.04" target="_blank" rel="noopener">https://www.first.org/cvss/calculator/3.04</a> </p>
+<h4 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h4><p>系统与用户的交换方式界面。</p>
+<p>附上：shell脚本学习： <a href="https://www.runoob.com/linux/linux-shell.html" target="_blank" rel="noopener">https://www.runoob.com/linux/linux-shell.html</a> </p>
+<h4 id="CMS"><a href="#CMS" class="headerlink" title="CMS"></a>CMS</h4><p>网站内容管理系统。 位于WEB 前端（Web 服务器）和后端办公系统或流程（内容创作、编辑）之间的软件系统。  内容的创作人员、编辑人员、发布人员使用内容管理系统来提交、修改、审批、发布内容。这里指的“内容”可能包括文件、表格、图片、数据库中的数据甚至视频等一切你想要发布到Internet、Intranet以及Extranet网站的信息。 </p>
+
+        
+      </div>
+    </div>
+
+  
+    </div>
+  
+
+  
+  
+    <div class="post-list">
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2020/06/13/SQL/" >
+  SQL
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2020/06/13/SQL/"><span class="article-date">
+  2020-06-13
+</span>
+</a>
+        
+
+        
+
+      </div>
+      <div class="article-entry">
+        
+          <h1 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h1><blockquote>
+<p>菜鸟教程：<a href="https://www.runoob.com/sql/sql-syntax.html" target="_blank" rel="noopener">https://www.runoob.com/sql/sql-syntax.html</a> </p>
+<p>知识补充：<a href="https://www.cnblogs.com/yangming1996/p/10416499.html" target="_blank" rel="noopener">https://www.cnblogs.com/yangming1996/p/10416499.html</a></p>
+<p>题目问答： 增删改查面试题学习</p>
+</blockquote>
+<h2 id="SQL语法"><a href="#SQL语法" class="headerlink" title="-SQL语法"></a>-SQL语法</h2><h4 id="1-一些最重要的-SQL-命令"><a href="#1-一些最重要的-SQL-命令" class="headerlink" title="1.一些最重要的 SQL 命令"></a>1.一些最重要的 SQL 命令</h4><ul>
+<li><strong>SELECT</strong> - 从数据库中提取数据</li>
+<li><strong>UPDATE</strong> - 更新数据库中的数据</li>
+<li><strong>DELETE</strong> - 从数据库中删除数据</li>
+<li><strong>INSERT INTO</strong> - 向数据库中插入新数据</li>
+<li><strong>CREATE DATABASE</strong> - 创建新数据库1</li>
+<li><strong>ALTER DATABASE</strong> - 修改数据库</li>
+<li><strong>CREATE TABLE</strong> - 创建新表</li>
+<li><strong>ALTER TABLE</strong> - 变更（改变）数据库表</li>
+<li><strong>DROP TABLE</strong> - 删除表</li>
+<li><strong>CREATE INDEX</strong> - 创建索引（搜索键）</li>
+<li><strong>DROP INDEX</strong> - 删除索引</li>
+</ul>
+<h4 id="2-数据库表"><a href="#2-数据库表" class="headerlink" title="2.数据库表"></a>2.数据库表</h4><p>一个数据库通常包含一个或多个表，每个表有一个名字标识。</p>
+<blockquote>
+<p>以下例子在 MySQL 的 RUNOOB 数据库中创建了 Websites 表，用于存储网站记录。 </p>
+</blockquote>
+<p>1）SQL 对大小写不敏感</p>
+<p>：SELECT 与 select 是相同的。</p>
+<p>2）某些数据库系统要求在每条 SQL 语句的末端使用分号。</p>
+<p>分号是在数据库系统中分隔每条 SQL 语句的标准方法，这样就可以在对服务器的相同请求中执行一条以上的 SQL 语句。</p>
+<p>在本教程中，我们将在每条 SQL 语句的末端使用分号。</p>
+<h3 id="SELECT语句"><a href="#SELECT语句" class="headerlink" title="#SELECT语句"></a>#SELECT语句</h3><blockquote>
+<p>从数据库中选取数据。</p>
+</blockquote>
+<p>1.语法</p>
+<p>SELECT <em>column_name</em>,<em>column_name</em><br>FROM <em>table_name</em>;</p>
+<p>与</p>
+<p>SELECT * FROM <em>table_name</em>;</p>
+<p> 例1： SELECT name,country FROM Websites; </p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200610234741476.png" alt="image-20200610234741476"></p>
+<p>例2：SELECT * FROM Websites;</p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200610234956342.png" alt="image-20200610234956342"></p>
+<p>2.结果集中的导航</p>
+<p>用函数导航。如MOVE-TO-FIRST-RECORD等。</p>
+<h3 id="SELECT-DISTINCT"><a href="#SELECT-DISTINCT" class="headerlink" title="#SELECT DISTINCT"></a>#SELECT DISTINCT</h3><blockquote>
+<p>用于返回唯一不同的值。</p>
+</blockquote>
+<p> 在表中，一个列可能会包含多个重复值，有时您也许希望仅仅列出不同（distinct）的值。 </p>
+<ol>
+<li><p>语法</p>
+<p>SELECT DISTINCT <em>column_name</em>,<em>column_name</em><br>FROM <em>table_name</em>; </p>
+<p>例：</p>
+<p>SELECT DISTINCT country</p>
+<p> FROM Websites;</p>
+</li>
+</ol>
+<h3 id="WHERE子句"><a href="#WHERE子句" class="headerlink" title="#WHERE子句"></a>#WHERE子句</h3><blockquote>
+<p>用于提取那些满足指定条件的记录。</p>
+</blockquote>
+<p>1.使用实例：选取国家为CN的所有网站</p>
+<p>SELECT * FROM Websites</p>
+<p> WHERE country=’CN’;</p>
+<p>2.文本字段 vs. 数值字段</p>
+<p>1）文本值：SQL 使用单引号 ‘’来环绕。</p>
+<p>（大部分数据库系统也接受双引号，用错可能也不报错）。</p>
+<p>在上个实例中 ‘CN’ 文本字段使用了单引号。</p>
+<p>2）数值字段：请不要使用引号。</p>
+<p>例：SELECT * FROM Websites </p>
+<p>WHERE id=1;</p>
+<p>3.下面的运算符可以在 WHERE 子句中使用：</p>
+<table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">=</td>
+<td align="left">等于</td>
+</tr>
+<tr>
+<td align="left">&lt;&gt;</td>
+<td align="left">不等于。<strong>注释：</strong>在 SQL 的一些版本中，该操作符可被写成 !=</td>
+</tr>
+<tr>
+<td align="left">&gt;</td>
+<td align="left">大于</td>
+</tr>
+<tr>
+<td align="left">&lt;</td>
+<td align="left">小于</td>
+</tr>
+<tr>
+<td align="left">&gt;=</td>
+<td align="left">大于等于</td>
+</tr>
+<tr>
+<td align="left">&lt;=</td>
+<td align="left">小于等于</td>
+</tr>
+<tr>
+<td align="left">BETWEEN</td>
+<td align="left">在某个范围内</td>
+</tr>
+<tr>
+<td align="left">LIKE</td>
+<td align="left">搜索某种模式</td>
+</tr>
+<tr>
+<td align="left">IN</td>
+<td align="left">指定针对某个列的多个可能值</td>
+</tr>
+</tbody></table>
+<h3 id="AND-amp-OR运算符"><a href="#AND-amp-OR运算符" class="headerlink" title="#AND &amp;OR运算符"></a>#AND &amp;OR运算符</h3><blockquote>
+<p>用于基于一个以上的条件对记录进行过滤。</p>
+</blockquote>
+<p>如果第一个条件和第二个条件都成立，则 AND 运算符显示一条记录。</p>
+<p>如果第一个条件和第二个条件中只要有一个成立，则 OR 运算符显示一条记录。</p>
+<p>1.AND例： SQL 语句从 “Websites” 表中选取国家为 “CN” 且alexa排名大于 “50” 的所有网站：</p>
+<p>SELECT * FROM Websites </p>
+<p>WHERE country=’CN’ </p>
+<p>AND alexa &gt; 50;</p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200611001358338.png" alt="image-20200611001358338"></p>
+<p>2.OR例：”Websites” 表中选取国家为 “USA” 或者 “CN” 的所有客户：</p>
+<p>SELECT * FROM Websites</p>
+<p>WHERE country=’USA’</p>
+<p>OR country=’CN’;</p>
+<p>3.结合两者</p>
+<blockquote>
+<p>用圆括号组成复杂的表达式</p>
+</blockquote>
+<p>例3：从 “Websites” 表中选取 alexa 排名大于 “15” 且国家为 “CN” 或 “USA” 的所有网站：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> alexa &gt;<span class="number">15</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">AND</span> (country=<span class="string">'CN'</span> <span class="keyword">OR</span> country=<span class="string">'USA'</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="ORDER-BY"><a href="#ORDER-BY" class="headerlink" title="#ORDER BY"></a>#ORDER BY</h3><blockquote>
+<p>用于对结果集进行排序。</p>
+</blockquote>
+<p>对结果集按照一个列或者多个列进行排序。（order by）</p>
+<p>默认按照升序,降序对记录进行排序，您可以使用 DESC 关键字。(desc)</p>
+<p>1.语法使用实例</p>
+<p>例1：从 “Websites” 表中选取所有网站，并按照 “alexa” 列排序：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> alexa;</span><br></pre></td></tr></table></figure>
+
+<p>例2：从 “Websites” 表中选取所有网站，并按照 “alexa” 列降序排序：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> alexa <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+
+<p>例3:从 “Websites” 表中选取所有网站，并按照 “country” 和 “alexa” 列排序：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> country,alexa;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>注意：</strong></p>
+<p>1.ORDER BY 多列的时候，先按照第一个column name排序，在按照第二个column name排序；如上述教程最后一个例子：</p>
+<ul>
+<li><p>1）、先将country值这一列排序，同为CN的排前面，同属USA的排后面；</p>
+</li>
+<li><p>2）、然后在同属CN的这些多行数据中，再根据alexa值的大小排列。</p>
+</li>
+<li><p>3）、ORDER BY 排列时，不写明ASC DESC的时候，默认是ASC。</p>
+</li>
+<li><p>ORDER BY 多列的时候，eg:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">order by A,B        这个时候都是默认按升序排列</span><br><span class="line">order by A desc,B   这个时候 A 降序，B 升序排列</span><br><span class="line">order by A ,B desc  这个时候 A 升序，B 降序排列</span><br></pre></td></tr></table></figure>
+
+<p>2.即 <strong>desc</strong> 或者 <strong>asc</strong> 只对它紧跟着的第一个列名有效，其他不受影响，仍然是默认的升序。</p>
+</li>
+</ul>
+<h3 id="INSERT-INTO"><a href="#INSERT-INTO" class="headerlink" title="#INSERT INTO"></a>#INSERT INTO</h3><blockquote>
+<p>(insert into)  INSERT INTO用于向表中插入新记录。</p>
+</blockquote>
+<p>1.语法：</p>
+<p>第一种形式：被插入的值</p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200611003724681.png" alt="image-20200611003724681"></p>
+<p>第二种形式：指定列名+被插入的值</p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200611003552159.png" alt="image-20200611003552159"></p>
+<p>2.例</p>
+<p>例1：向 “Websites” 表中插入一个新行。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span>  Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">VALUES</span>  (<span class="string">'baidu'</span>,<span class="string">' https://www.baidu.com/ '</span>,<span class="string">'4'</span>,CN);</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200611004131455.png" alt="image-20200611004131455"></p>
+<p>3.功能：在指定列插入数据</p>
+<p>例2：插入一个新行，但是只在 “name”、”url” 和 “country” 列插入数据（id 字段会自动更新）：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> Websites(<span class="keyword">name</span>,<span class="keyword">url</span>,country)</span><br><span class="line"></span><br><span class="line"><span class="keyword">VALUES</span>(<span class="string">'baidu'</span>,<span class="string">' https://www.baidu.com/ '</span>,CN);</span><br></pre></td></tr></table></figure>
+
+<p>4.注意</p>
+<p>1）没有指定要插入数据的列名的形式</p>
+<p>需要列出插入行的每一列数据:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name</span><br><span class="line"><span class="keyword">VALUES</span> (value1,value2,value3,...);</span><br></pre></td></tr></table></figure>
+
+<p>2）insert   into select 和select   into from 的区别</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> scorebak </span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> socre </span><br><span class="line"><span class="keyword">WHERE</span> neza=<span class="string">'neza'</span> ;  <span class="comment">--插入一行,要求表scorebak 必须存在</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">INTO</span> scorebak </span><br><span class="line"><span class="keyword">FROM</span> score  </span><br><span class="line"><span class="keyword">WHERE</span> neza=<span class="string">'neza'</span>  ;<span class="comment">--也是插入一行,要求表scorebak 不存在</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="UPDATE"><a href="#UPDATE" class="headerlink" title="#UPDATE"></a>#UPDATE</h3><blockquote>
+<p>用于更新表中的记录。</p>
+</blockquote>
+<p>新表中已存在的记录。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> table_name</span><br><span class="line"><span class="keyword">SET</span> column1=value1,column2=value2,...</span><br><span class="line"><span class="keyword">WHERE</span> some_column=some_value;</span><br></pre></td></tr></table></figure>
+
+<p><strong>PS:注意其中的WHERE子句！</strong></p>
+<p>WHERE规定哪条需要更新，省略则所有记录都会更新。</p>
+<p>2.实例</p>
+<p>例1：把 “菜鸟教程” 的 alexa 排名更新为 5000，country 改为 USA。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">SET</span> alexa=<span class="string">'5000'</span>,country=<span class="string">'USA'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span>= <span class="string">'菜鸟教程'</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200611005523266.png" alt="image-20200611005523266"></p>
+<p>3.UPDATE警告！！</p>
+<p>执行没有 WHERE 子句的 UPDATE 要慎重，再慎重。</p>
+<p>在 MySQL 中可以通过设置 <strong>sql_safe_updates</strong> 这个自带的参数来解决，当该参数开启的情况下，你必须在update 语句后携带 where 条件，否则就会报错。</p>
+<p><strong>set sql_safe_updates=1;</strong> 表示开启该参数</p>
+<h3 id="DELETE"><a href="#DELETE" class="headerlink" title="#DELETE"></a>#DELETE</h3><blockquote>
+<p>用于删除表中的记录。</p>
+</blockquote>
+<p>1.语法</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> some_column=some_value;</span><br></pre></td></tr></table></figure>
+
+<p><strong>PS:注意其中的WHERE子句！</strong></p>
+<p>WHERE规定哪条需要删除，省略则所有记录都会删除。</p>
+<p>2.实例</p>
+<p>例1：从 “Websites” 表中删除网站名为 “Facebook” 且国家为 USA 的网站。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span>=<span class="string">'Facebook'</span> <span class="keyword">AND</span> country=<span class="string">'USA'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>再读取表即可见。</p>
+<p>3.删除表内数据而不删除表</p>
+<p>这意味着表结构、属性、索引将保持不变：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> table_name;</span><br><span class="line"></span><br><span class="line">或</span><br><span class="line"></span><br><span class="line"><span class="keyword">DELETE</span> * <span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注释：</strong>在删除记录时要格外小心！因为您不能重来！</p>
+<h3 id="SELECT-TOP-LIMIT-ROWNUM子句"><a href="#SELECT-TOP-LIMIT-ROWNUM子句" class="headerlink" title="#SELECT TOP,LIMIT,ROWNUM子句"></a>#SELECT TOP,LIMIT,ROWNUM子句</h3><p>1.SELECT TOP</p>
+<blockquote>
+<p>用于规定要返回的记录的数目。</p>
+</blockquote>
+<p>对于拥有数千条记录的大型表来说，是非常有用的。</p>
+<p><strong>注意:</strong>并非所有的数据库系统都支持 SELECT TOP 语句。</p>
+<p> MySQL 支持 LIMIT 语句来选取指定的条数数据，</p>
+<p> Oracle 可以使用 ROWNUM 来选取。</p>
+<h5 id="1-语法"><a href="#1-语法" class="headerlink" title="1.语法"></a>1.语法</h5><p>1)SQL Server / MS Access 语法-TOP</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> TOP <span class="built_in">number</span>|<span class="keyword">percent</span> column_name(s)</span><br><span class="line"><span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure>
+
+<p>2)MySQL 语法-LIMIT</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name(s)</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="built_in">number</span>;</span><br></pre></td></tr></table></figure>
+
+<p>例1:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Persons</span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>3)Oracle 语法-ROWNUM</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name(s)</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">ROWNUM</span> &lt;= <span class="built_in">number</span>;</span><br></pre></td></tr></table></figure>
+
+<p>例2:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Persons</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">ROWNUM</span> &lt;=<span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-实例"><a href="#2-实例" class="headerlink" title="2.实例"></a>2.实例</h5><p>例1）MySQL 的SELECT LIMIT</p>
+<p>从 “Websites” 表中选取头两条记录：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">LIMIT</span> <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+<p>例2）SQL的SELECT TOP PERCENT </p>
+<p>在 Microsoft SQL Server 中还可以使用百分比作为参数。</p>
+<p>下面的 SQL 语句从 websites 表中选取前面百分之 50 的记录：</p>
+<p>以下操作在 Microsoft SQL Server 数据库中可执行。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> TOP <span class="number">50</span> <span class="keyword">PERCENT</span> * <span class="keyword">FROM</span> Websites;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-TIPS"><a href="#3-TIPS" class="headerlink" title="3.TIPS"></a>3.TIPS</h5><p>变相返回后 N 行:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--前5行</span></span><br><span class="line"><span class="keyword">SELECT</span> TOP <span class="number">5</span> *</span><br><span class="line"><span class="keyword">FROM</span> Websites;</span><br><span class="line"></span><br><span class="line"><span class="comment">--后5行</span></span><br><span class="line"><span class="keyword">SELECT</span> TOP <span class="number">5</span> *</span><br><span class="line"><span class="keyword">FROM</span> Websites</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">id</span> <span class="keyword">DESC</span>;<span class="comment">--desc 表示降序排列 asc 表示升序</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="LIKE操作符"><a href="#LIKE操作符" class="headerlink" title="#LIKE操作符"></a>#LIKE操作符</h3><blockquote>
+<p>用于在 WHERE 子句中,搜索列中的指定模式。</p>
+</blockquote>
+<p>1.语法</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name(s)</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> column_name <span class="keyword">LIKE</span> pattern;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：通配符%的位置和数量。</p>
+<p>例1：选取 name 以字母 “G” 开始的所有客户：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span> <span class="keyword">LIKE</span>  <span class="string">'G%'</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong>“%” 符号用于在模式的前后定义通配符（默认字母）。您将在接下来学习更多有关通配符的知识。</p>
+<p>例2：选取 name 以字母 “k” 结尾的所有客户：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span> <span class="keyword">LIKE</span>  <span class="string">'%k'</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>例3：选取 name 包含模式 “oo” 的所有客户：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span> <span class="keyword">LIKE</span> <span class="string">'%oo%'</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>通过使用 NOT 关键字，您可以选取不匹配模式的记录。</p>
+<p>例4：选取 name 不包含模式 “oo” 的所有客户：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span>  <span class="keyword">NOT</span> <span class="keyword">LIKE</span> <span class="string">'%oo%'</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="SQL通配符"><a href="#SQL通配符" class="headerlink" title="-SQL通配符"></a>-SQL通配符</h2><blockquote>
+<p>用于替代字符串中的任何其他字符。</p>
+</blockquote>
+<p>在 SQL 中，通配符与 SQL LIKE 操作符一起使用。</p>
+<p>SQL 通配符用于搜索表中的数据。</p>
+<table>
+<thead>
+<tr>
+<th align="left">通配符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">%</td>
+<td align="left">替代 0 个或多个字符</td>
+</tr>
+<tr>
+<td align="left">_(下划线)</td>
+<td align="left">替代一个字符</td>
+</tr>
+<tr>
+<td align="left">[<em>charlist</em>]</td>
+<td align="left">字符列中的任何单一字符</td>
+</tr>
+<tr>
+<td align="left">[^<em>charlist</em>] 或 [!<em>charlist</em>]</td>
+<td align="left">不在字符列中的任何单一字符</td>
+</tr>
+</tbody></table>
+<p>实例</p>
+<h5 id="1-SQL"><a href="#1-SQL" class="headerlink" title="1)SQL%"></a>1)SQL%</h5><p>例1：选取 url 以字母 “https” 开始的所有网站：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">url</span> <span class="keyword">LIKE</span> <span class="string">'http%'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>例2：选取 url 包含模式 “oo” 的所有网站：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *<span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">url</span> <span class="keyword">LIKE</span> <span class="string">'%oo%'</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2）SQL与"><a href="#2）SQL与" class="headerlink" title="2）SQL与_"></a>2）SQL与_</h5><p>例3：选取 name 以一个任意字符开始，然后是 “oogle” 的所有客户</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span> <span class="keyword">LIKE</span> <span class="string">'_oogle'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>例4:选取 name 以 “G” 开始，然后是一个任意字符，然后是 “o”，然后是一个任意字符，然后是 “le” 的所有网站.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span> <span class="keyword">LIKE</span> <span class="string">'G_o_le'</span>;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-SQL-charlist"><a href="#3-SQL-charlist" class="headerlink" title="3)SQL [charlist]"></a>3)SQL [charlist]</h5><p>MySQL 中使用 <strong>REGEXP</strong> 或 <strong>NOT REGEXP</strong> 运算符</p>
+<p> (或 RLIKE 和 NOT RLIKE) 来操作正则表达式。</p>
+<p>例1：选取 name 以 “G”、”F” 或 “s” 开始的所有网站：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span>  REGEXP  <span class="string">'^[GFs]'</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200611022737063.png" alt="image-20200611022737063"></p>
+<p>例2：选取 name 以 A 到 H 字母开头的网站：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span>  REGEXP  <span class="string">'^[A-H]'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>例3： name 不以 A 到 H 字母开头的网站：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span>  REGEXP  <span class="string">'^[^A-H]'</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="IN操作符"><a href="#IN操作符" class="headerlink" title="#IN操作符"></a>#IN操作符</h3><blockquote>
+<p>允许您在 WHERE 子句中规定多个值。</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name(s)</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> column_name <span class="keyword">IN</span> (value1,value2,...);</span><br></pre></td></tr></table></figure>
+
+<p>例1：选取 name 为 “Google” 或 “菜鸟教程” 的所有网站：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span> <span class="keyword">IN</span> (<span class="string">'Google'</span>,<span class="string">'菜鸟教程'</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>in 与 = 的转换</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> Websites</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">in</span> (<span class="string">'Google'</span>,<span class="string">'菜鸟教程'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>可以转换成 <strong>=</strong> 的表达：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span>=<span class="string">'Google'</span> <span class="keyword">OR</span> <span class="keyword">name</span>=<span class="string">'菜鸟教程'</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>相同点：均在WHERE中使用作为筛选条件之一、均是等于的含义</li>
+<li>不同点：IN可以规定多个值，等于规定一个值</li>
+</ul>
+<h3 id="BETWEEN操作符"><a href="#BETWEEN操作符" class="headerlink" title="#BETWEEN操作符"></a>#BETWEEN操作符</h3><blockquote>
+<p>用于选取介于两个值之间的数据范围内的值。</p>
+<p>这些值可以是数值、文本或者日期。</p>
+</blockquote>
+<p>1.语法</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name(s)</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> column_name <span class="keyword">BETWEEN</span> value1*</span><br><span class="line"><span class="keyword">AND</span> value2;</span><br></pre></td></tr></table></figure>
+
+<p>例1：选取 alexa 介于 1 和 20 之间的所有网站：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span>  alexa <span class="keyword">BETWEEN</span> <span class="number">1</span> <span class="keyword">AND</span> <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>NO BETWEEN</p>
+<p>例2：如需显示不在上面实例范围内的网站，请使用 NOT BETWEEN：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> alexa <span class="keyword">NOT</span> <span class="keyword">BETWEEN</span> <span class="number">1</span> <span class="keyword">AND</span> <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>带有IN的BETWEEN实例</p>
+<p>例3：选取 alexa 介于 1 和 20 之间但 country 不为 USA 和 IND 的所有网站：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> (alexa <span class="keyword">BETWEEN</span> <span class="number">1</span> <span class="keyword">AND</span> <span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">AND</span> country <span class="keyword">NOT</span> <span class="keyword">IN</span> (<span class="string">'USA'</span>,<span class="string">'IND'</span>) ;</span><br></pre></td></tr></table></figure>
+
+<p>带有文本值的 BETWEEN </p>
+<p>例4：选取 name 以介于 ‘A’ 和 ‘H’ 之间字母开始的所有网站</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">name</span> <span class="keyword">BETWEEN</span> <span class="string">'A'</span> <span class="keyword">AND</span> <span class="string">'H'</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>实例表2</p>
+<p>下面是 “access_log” 网站访问记录表的数据，其中：</p>
+<p><strong>aid：</strong>为自增 id。</p>
+<p><strong>site_id</strong>：为对应 websites表的网站 id。</p>
+<p><strong>count</strong>：访问次数。</p>
+<p><strong>date：</strong>为访问日期。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM access_log;</span><br><span class="line">+<span class="comment">-----+---------+-------+------------+</span></span><br><span class="line">| aid | site_id | count | date       |</span><br><span class="line">+<span class="comment">-----+---------+-------+------------+</span></span><br><span class="line">|   1 |       1 |    45 | 2016-05-10 |</span><br><span class="line">|   2 |       3 |   100 | 2016-05-13 |</span><br><span class="line">|   3 |       1 |   230 | 2016-05-14 |</span><br><span class="line">|   4 |       2 |    10 | 2016-05-14 |</span><br><span class="line">|   5 |       5 |   205 | 2016-05-14 |</span><br><span class="line">|   6 |       4 |    13 | 2016-05-15 |</span><br><span class="line">|   7 |       3 |   220 | 2016-05-15 |</span><br><span class="line">|   8 |       5 |   545 | 2016-05-16 |</span><br><span class="line">|   9 |       3 |   201 | 2016-05-17 |</span><br><span class="line">+<span class="comment">-----+---------+-------+------------+</span></span><br><span class="line">9 rows in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>带有日期值的 BETWEEN 操作符实例</p>
+<p>例5：选取 date 介于 ‘2016-05-10’ 和 ‘2016-05-14’ 之间的所有访问记录</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> access_log</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">data</span> <span class="keyword">BETWEEN</span> <span class="string">'2016-05-10'</span> <span class="keyword">AND</span> <span class="string">'2016-05-14'</span> ;</span><br></pre></td></tr></table></figure>
+
+<p>*<em>注意!:在不同的数据库中，BETWEEN 操作符会产生不同的结果！<br>*</em>在某些数据库中，BETWEEN 选取介于两个值之间但不包括两个测试值的字段。<br>在某些数据库中，BETWEEN 选取介于两个值之间且包括两个测试值的字段。<br>在某些数据库中，BETWEEN 选取介于两个值之间且包括第一个测试值但不包括最后一个测试值的字段。</p>
+<p><strong>因此，请检查您的数据库是如何处理 BETWEEN 操作符！</strong></p>
+<h2 id="SQL别名"><a href="#SQL别名" class="headerlink" title="-SQL别名"></a>-SQL别名</h2><blockquote>
+<p>使用SQL可以为表名称或列名称指定别名。</p>
+</blockquote>
+<p>1.语法</p>
+<p>1)列的 SQL 别名语法</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name <span class="keyword">AS</span> alias_name</span><br><span class="line"><span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure>
+
+<p>2)表的 SQL 别名语法</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column_name(s)</span><br><span class="line"><span class="keyword">FROM</span> table_name <span class="keyword">AS</span> alias_name;</span><br></pre></td></tr></table></figure>
+
+<p> 例1：下面的 SQL 语句指定了两个别名，一个是 name 列的别名，一个是 country 列的别名。</p>
+<p><strong>提示：</strong>如果列名称包含空格，要求使用双引号或方括号 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span> <span class="keyword">AS</span> abc ,country <span class="keyword">AS</span> <span class="keyword">def</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">FROM</span> Websites;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>例2：把三个列（url、alexa 和 country）结合在一起，并创建一个名为 “site_info” 的别名：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">name</span>,<span class="keyword">CONCAT</span>(<span class="keyword">url</span>,<span class="string">','</span>,alexa,<span class="string">','</span>,country) <span class="keyword">AS</span> site_info</span><br><span class="line"></span><br><span class="line"><span class="keyword">FROM</span> Websites;</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200611154744319.png" alt="image-20200611154744319"></p>
+<p> 例3：选取 “菜鸟教程” 的所访问记录。我们使用 “Websites” 和 “access_log” 表，并分别为它们指定表别名 “w” 和 “a”（通过使用别名让 SQL 更简短）： </p>
+<p>SELECT w.name,w.url,a.count,a.date</p>
+<p>FROM Websites AS w, access_log AS a</p>
+<p>WHERE a.site_id=w.id and w.name = “菜鸟教程”;</p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200611155204077.png" alt="image-20200611155204077"></p>
+<p>例4： 不带别名的相同的 SQL 语句 </p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200611155500691.png" alt="image-20200611155500691"></p>
+<p>（复杂）</p>
+<p>so：在下面的情况下，使用别名很有用：</p>
+<ul>
+<li>在查询中涉及超过一个表</li>
+<li>在查询中使用了函数</li>
+<li>列名称很长或者可读性差</li>
+<li>需要把两个列或者多个列结合在一起</li>
+</ul>
+<h2 id="SQL-JOIN"><a href="#SQL-JOIN" class="headerlink" title="-SQL JOIN"></a>-SQL JOIN</h2><blockquote>
+<p>用于把来自两个或多个表的行结合起来</p>
+</blockquote>
+<p>首先，连接的结果可以在逻辑上看作是由SELECT语句指定的列组成的新表。</p>
+<p>左连接与右连接的左右指的是以两张表中的哪一张为基准，它们都是外连接。</p>
+<p>外连接就好像是为非基准表添加了一行全为空值的万能行，用来与基准表中找不到匹配的行进行匹配。假设两个没有空值的表进行左连接，左表是基准表，左表的所有行都出现在结果中，右表则可能因为无法与基准表匹配而出现是空值的字段。</p>
+<p>这部分主要涉及的是表连接的逻辑问题，教程主讲语法的话这部分确实需要自己再去搜资料.</p>
+<p>下图展示了 LEFT JOIN、RIGHT JOIN、INNER JOIN、OUTER JOIN 相关的 7 种用法。</p>
+<p><a href="https://www.runoob.com/wp-content/uploads/2019/01/sql-join.png" target="_blank" rel="noopener"><img src="https://www.runoob.com/wp-content/uploads/2019/01/sql-join.png" alt="img"></a></p>
+<p>1.最常见的 JOIN 类型：</p>
+<h4 id="1-SQL-INNER-JOIN（简单的-JOIN）。"><a href="#1-SQL-INNER-JOIN（简单的-JOIN）。" class="headerlink" title="1.SQL INNER JOIN（简单的 JOIN）。"></a><strong>1.SQL INNER JOIN（简单的 JOIN）</strong>。</h4><p>SQL INNER JOIN 从多个表中返回满足 JOIN 条件的所有行。</p>
+<p>例1：请注意，”Websites” 表中的 “<strong>id</strong>“ 列指向 “access_log” 表中的字段 “<strong>site_id</strong>“。上面这两个表是通过 “site_id” 列联系起来的。</p>
+<p>然后，如果我们运行下面的 SQL 语句（包含 INNER JOIN）：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Websites.id,Websites.name,access_log.count, access_log.date</span><br><span class="line"></span><br><span class="line"><span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> access_log </span><br><span class="line"></span><br><span class="line"><span class="keyword">ON</span>  Websites.id =access_log.site.id;</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200611171133335.png" alt="image-20200611171133335"></p>
+<p>在我们继续讲解实例之前，我们先列出您可以使用的不同的 SQL JOIN 类型：</p>
+<ul>
+<li><strong>INNER JOIN</strong>：如果表中有至少一个匹配，则返回行</li>
+<li><strong>LEFT JOIN</strong>：即使右表中没有匹配，也从左表返回所有的行</li>
+<li><strong>RIGHT JOIN</strong>：即使左表中没有匹配，也从右表返回所有的行</li>
+<li><strong>FULL JOIN</strong>：只要其中一个表中存在匹配，则返回行</li>
+</ul>
+<h2 id="1）SQL-INNER-JOIN-关键字"><a href="#1）SQL-INNER-JOIN-关键字" class="headerlink" title="1）SQL INNER JOIN 关键字"></a>1）SQL INNER JOIN 关键字</h2><p>INNER JOIN 关键字在表中存在至少一个匹配时返回行。</p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200611183236272.png" alt="image-20200611183236272"></p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200611183302470.png" alt="image-20200611183302470"></p>
+<p>例1：将返回所有网站的访问记录：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Websites.name,access_log.count,access_log.date</span><br><span class="line"></span><br><span class="line"><span class="keyword">FROM</span> Websites</span><br><span class="line"></span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> access_log</span><br><span class="line"></span><br><span class="line"><span class="keyword">ON</span>  Websites.id=access_log.site_id</span><br><span class="line"></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> access_log.count;</span><br></pre></td></tr></table></figure>
+
+
+        
+      </div>
+    </div>
+
+  
+    </div>
+  
+
+  
+  
+    <div class="post-list">
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/2020/06/13/OWASP%20TOP%2010/" >
+  OWASP TOP 10
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/2020/06/13/OWASP%20TOP%2010/"><span class="article-date">
+  2020-06-13
+</span>
+</a>
+        
+
+        
+
+      </div>
+      <div class="article-entry">
+        
+          <h1 id="OWASP-TOP-10"><a href="#OWASP-TOP-10" class="headerlink" title="OWASP TOP 10"></a>OWASP TOP 10</h1><blockquote>
+<p>13年版已升级-2017版本</p>
+</blockquote>
+<p>参考： <a href="https://blog.csdn.net/wang_624/article/details/89683571?ops_request_misc=%7B%22request%5Fid%22%3A%22159198134219725211934408%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&request_id=159198134219725211934408&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_ctr_v4-4-89683571.ecpm_v1_rank_ctr_v4&utm_term=owasp+top10" target="_blank" rel="noopener">https://blog.csdn.net/wang_624/article/details/89683571?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522159198134219725211934408%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=159198134219725211934408&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2<del>all</del>first_rank_ecpm_v1~rank_ctr_v4-4-89683571.ecpm_v1_rank_ctr_v4&amp;utm_term=owasp+top10</a> </p>
+<p>2：腾讯PPT2</p>
+<p>3.博客园 <a href="https://www.cnblogs.com/MI6plus/p/11488609.html" target="_blank" rel="noopener">https://www.cnblogs.com/MI6plus/p/11488609.html</a> </p>
+<h2 id="什么是OWASP"><a href="#什么是OWASP" class="headerlink" title="-什么是OWASP"></a>-什么是OWASP</h2><p>OWASP：非盈利组织开放式Web应用安全项目- Open Web Application Security Project，目前全球有130个分会近万名会员，其主要目标是研议协助解决Web软体安全之 标准、工具与技术文件，长期致力于协助政府或企业了解并改善网页应用程式与网页服务的安全性。</p>
+<p>最出名的是：</p>
+<p>OWASP TOP 10=“10项最严重的Web 应用程序安全风险列表” ，总结了Web应用程序最可能、最常见、最危险的十大漏洞，是开发、测试、服务、咨询人员应知应会的知识。</p>
+<p>OWASP TOP 变化</p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200613011531545.png" alt="image-20200613011531545"></p>
+<p>OWASP存在原因</p>
+<p>复杂的应用越来越多，开发者的能力也参差不齐，间接导致了应用程序存在安全风险。攻击者可以通过应用程序中许多不同的路径 方法去危害您的业务或者企业组织。每种路径方法都代表了一种风险， 这些风险可能会，也有可能不会严重到值得您去关注。</p>
+<h2 id="什么是OWASP-TOP-10"><a href="#什么是OWASP-TOP-10" class="headerlink" title="-什么是OWASP TOP 10"></a>-什么是OWASP TOP 10</h2><h2 id="A1注入-injection"><a href="#A1注入-injection" class="headerlink" title="A1注入(injection)"></a>A1注入(injection)</h2><blockquote>
+<p>将不安全的命令作为命令发送给解析器，会产生类似于<code>SQL注入、NoSQL注入、OS注入和LDAP注入</code>(<a href="https://baike.baidu.com/item/LDAP/2875565?fr=aladdin" target="_blank" rel="noopener">轻量目录访问协议</a>) 的缺陷，攻击者可以构造<code>恶意数据</code>通过注入缺陷的解析器执行没有权限的<code>非预期命令</code>或<code>访问数据</code>。</p>
+</blockquote>
+<p>常见的就是SQL注入</p>
+<h4 id="SQL注入"><a href="#SQL注入" class="headerlink" title="-SQL注入"></a>-SQL注入</h4><p>原理：把SQL命令插入到Web提交表单或者输入域名或者页面请求的 查询字符串中去，最终欺骗服务器执行恶意的SQL命令。</p>
+<p>//不被信任的应用程序发生的不可信数据诱解命令或者越权访问数据。</p>
+<p>存在原因：1）没有输入过滤。2）没有转义输出。</p>
+<p>建议：1）对数字类型参数——数字类型变换，再代入。</p>
+<p>2）过滤一些参数（GET/POST中对于SQL语言查询部分）</p>
+<p>3）对用户输入检查——特别字符，单引号双引号分号逗号冒号等——转换或过滤。</p>
+<p>4）使用白名单</p>
+<p>方式思路 :</p>
+<p>1）找到注入位置——2）判断服务器和数据库类型——3）对特点进行SQL注入攻击。</p>
+<h2 id="A2失效的身份认证"><a href="#A2失效的身份认证" class="headerlink" title="A2失效的身份认证"></a>A2失效的身份认证</h2><blockquote>
+<p>通过错误使用应用程序的<code>身份认证</code>和<code>会话管理功能</code>，</p>
+<p>攻击者能够<code>破译密码</code>、<code>密钥</code>或<code>会话令牌</code>，或者<code>暂时</code>或<code>永久</code>的冒充其他用户的身份。</p>
+</blockquote>
+<p> 原理：利用与认证和会话管理相关的应用程序功能得不到正确实施，导致攻击者破坏密码，密钥，会话令牌或实施漏洞冒充其他用户身份。</p>
+<p> 建议：1）使用内置的会话管理功能</p>
+<p> 2）通过认证的问候</p>
+<p> 3）使用单一的入口点 </p>
+<p>4）确保在一开始登录SSL保护的网页</p>
+<h2 id="A3-敏感数据泄露"><a href="#A3-敏感数据泄露" class="headerlink" title="A3 敏感数据泄露"></a>A3 敏感数据泄露</h2><blockquote>
+<p>这个比较好理解，一般我们的敏感信息包括<code>密码</code>、<code>财务数据</code>、<code>医疗数据</code>等，</p>
+<p>由于web应用或者API<code>未加密</code>或<code>不正确的保护敏感数据</code></p>
+<p>，这些数据极易遭到攻击者利用，攻击者可能使用这些数据来进行一些犯罪行为，因此，未加密的信息极易遭到破坏和利用，我们应该加强对敏感数据的保护，web应用应该在传输过程中数据、存储的数据以及和浏览器的交互时的数据进行加密，保证数据安全。</p>
+</blockquote>
+<p> 原理：由于管理员或者技术人员等各种原因导致敏感信息泄露</p>
+<p> 修复方案：1）对信息加密，运用加密和算法</p>
+<p>2）分类进行数据管理</p>
+<p>3）及时清除和标记数据</p>
+<p>4）禁止对数据的响应</p>
+<h2 id="A4外部实体-XXE"><a href="#A4外部实体-XXE" class="headerlink" title="A4外部实体(XXE)"></a>A4外部实体(XXE)</h2><blockquote>
+<p>XXE 全称为XML External Entity attack 即XML<a href="https://baike.baidu.com/item/可扩展标记语言/2885849?fromtitle=xml&fromid=86251&fr=aladdin" target="_blank" rel="noopener">(可扩展标记语言)</a> 外部实体注入攻击，早期或配置错误的XML处理器评估了XML文件外部实体引用，攻击者可以利用这个漏洞窃取URI(<a href="https://baike.baidu.com/item/URI/16481812" target="_blank" rel="noopener">统一资源标识符</a>)文件处理器的<code>内部文件</code>和<code>共享文件</code>、<code>监听内部扫描端口</code>、<code>执行远程代码</code>和实施<a href="https://baike.baidu.com/item/拒绝服务攻击/421896?fr=aladdin" target="_blank" rel="noopener">拒绝服务攻击</a>。</p>
+</blockquote>
+<p>建议：</p>
+<p>1）注意数据格式</p>
+<p>2）及时修复和更新应用</p>
+<p>3）服务器过滤数据</p>
+<h2 id="A5失效的访问控制"><a href="#A5失效的访问控制" class="headerlink" title="A5失效的访问控制"></a>A5失效的访问控制</h2><blockquote>
+<p>通过<code>身份验证</code>的用户，可以访问其他用户的相关信息，没有实施恰当的访问权限。攻击者可以利用这个漏洞去查看未授权的功能和数据，eg:<code>访问用户的账户</code>、<code>敏感文件</code>、<code>获取和正常用户相同的权限</code>等.</p>
+</blockquote>
+<p> 原理：这个漏洞也是与认证相关的，这种漏洞具体是指在系统已经对url的访问做了限制的情况下，但这种限制并没有生效。</p>
+<p>常见：1）系统没有对用户进行角色的检查</p>
+<p>2）用户通过修改URL的action并指向未被授权页面就能访问该页面同样是个漏洞 </p>
+<p>还是与越权有关。</p>
+<p>  修复方案：</p>
+<p>1.检查管理权限的过程并确保能够容易进行升级和审计</p>
+<p>2.默认缺省情况下，拒绝访问。并且及时删除无用。</p>
+<p>对于每个功能得访问，需要明确的角色授权。</p>
+<p>3.检查每个功能分配的权限合理有效。</p>
+<p>4.</p>
+<h2 id="A6-安全配置错误"><a href="#A6-安全配置错误" class="headerlink" title="A6 安全配置错误"></a>A6 安全配置错误</h2><blockquote>
+<p>安全配置错误是比较常见的漏洞，由于操作者的<code>不当配置</code>(默认配置，临时配置，开源云存储，http标头配置，以及包含敏感信息的详细错误)，</p>
+<p>导致攻击者可以利用这些配置获取到更高的权限，安全配置错误可以发生在各个层面，包含平台、web服务器、应用服务器、数据库、架构和代码。</p>
+</blockquote>
+<p> 原理：安全配置错误可以发生在一个应用程序堆栈的任何层面，</p>
+<p>包括平台，web服务器，应用服务器，数据库，架构和自定义的代码。</p>
+<p>攻击者通过访问默认账户，未使用的网页，未安装的补丁的漏洞，未被保护的文件和目录等，以获得对系统为授权的访问</p>
+<p>  修复方案：</p>
+<p>1.自动化安装部署</p>
+<p>2.及时了解并部署每个环节的    软件更新和补丁信息</p>
+<p>3.实施漏洞扫描和安全审计</p>
+<h2 id="A7-跨站脚本（xss）"><a href="#A7-跨站脚本（xss）" class="headerlink" title="A7 跨站脚本（xss）"></a>A7 跨站脚本（xss）</h2><blockquote>
+<p>xss攻击全称为<a href="https://baike.baidu.com/item/XSS攻击/954065?fr=aladdin" target="_blank" rel="noopener">跨站脚本攻击</a>，跨站脚本攻击的英文全称是Cross Site Script，为了和样式表区分，缩写为XSS。</p>
+<p>当应用程序的新网页中包含<code>不受信任的</code>、<code>未经恰当验证</code>、<code>转义的数据</code>或可以使用<code>HTML、JavaScript的浏览器API更新的现有网页</code>时，就会出现xss漏洞，跨站脚本攻击是<code>最普遍</code>的web应用安全漏洞，甚至在某些安全平台都存在xss漏洞。</p>
+<p>xss会执行攻击者在浏览器中执行的脚本，并劫持用户会话，破坏网站或用户重定向到恶意站点，使用xss还可以执行拒绝服务攻击。</p>
+</blockquote>
+<p>原理：</p>
+<p>发生的原因是网站将用户输入的内容输出到页面上，在这个过程中可能有恶意代码被浏览器执行。</p>
+<p>跨站脚本攻击,它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意用户的特殊目的。</p>
+<p>XSS属于被动式的攻击，因为其被动且不好利用，所以许多人常忽略其危害性。而本文主要讲的是利用XSS得到目标服务器的shell。技术虽然是老技术，但是其思路希望对大家有帮助。</p>
+<p>已知的跨站脚本攻击漏洞有三种：</p>
+<p>1）存储式；2）反射式；3）基于DOM。</p>
+<p>​    1、 存储型跨站脚本攻击涉及的功能点：用户输入的文本信息保存到数据库中，并能够在页面展示的功能点，例如用户留言、发送站内消息、个人信息修改等功能点。</p>
+<p>​    2、 反射型跨站脚本攻击涉及的功能点：URL参数需要在页面显示的功能点都可能存在反射型跨站脚本攻击，例如站内搜索、查询功能点。</p>
+<p>​    3、 基于DOM跨站脚本攻击涉及的功能点：涉及DOM对象的页面程序，包括（不限这些）：</p>
+<p>​    </p>
+<p>修复方案： 总体修复方式：验证所有输入数据，有效检测攻击；对所有输出数据进行适当的编码，以防止任何已成功注入的脚本在浏览器端运行。具体如下 ：</p>
+<p>​    1、 输入验证：某个数据被接受为可被显示或存储之前，使用标准输入验证机制，验证所有输入数据的长度、类型、语法以及业务规则。</p>
+<p>​    2、 输出编码：数据输出前，确保用户提交的数据已被正确进行entity编码，建议对所有字符进行编码而不仅局限于某个子集。</p>
+<p>​    3、 明确指定输出的编码方式：不要允许攻击者为你的用户选择编码方式(如ISO 8859-1或 UTF 8)。</p>
+<p>​    4、 注意黑名单验证方式的局限性：仅仅查找或替换一些字符(如”&lt;” “&gt;”或类似”script”的关键字)，很容易被XSS变种攻击绕过验证机制。</p>
+<p>​    5、 警惕规范化错误：验证输入之前，必须进行解码及规范化以符合应用程序当前的内部表示方法。请确定应用程序对同一输入不做两次解码。对客户端提交的数据进行过滤，一般建议过滤掉双引号（”）、尖括号（&lt;、&gt;）等特殊字符，或者对客户端提交的数据中包含的特殊字符进行实体转换，比如将双引号（”）转换成其实体形式&quot;，&lt;对应的实体形式是&lt;，&lt;对应的实体形式是&gt;以下为需过滤的常见字符：</p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200613014910571.png" alt="image-20200613014910571"></p>
+<h2 id="A8不安全的反序列化"><a href="#A8不安全的反序列化" class="headerlink" title="A8不安全的反序列化"></a>A8不安全的反序列化</h2><blockquote>
+<p>不安全的反序列化可以导致<a href="https://baike.baidu.com/item/远程代码执行漏洞/2491231?fr=aladdin" target="_blank" rel="noopener">远程代码执行</a>、<a href="https://baike.baidu.com/item/重放攻击?fromtitle=重播攻击&fromid=19455997" target="_blank" rel="noopener">重放攻击</a>、注入攻击或特权升级攻击</p>
+</blockquote>
+<h2 id="A9使用含有已知漏洞的组件"><a href="#A9使用含有已知漏洞的组件" class="headerlink" title="A9使用含有已知漏洞的组件"></a>A9使用含有已知漏洞的组件</h2><blockquote>
+<p><a href="https://baike.baidu.com/item/组件/6902128?fr=aladdin" target="_blank" rel="noopener">组件</a>(eg：库、框架或其他软件模块)拥有应用程序相同的权限，如果应用程序中含有已知漏洞，攻击者可以利用漏洞获取数据或接管服务器。同时，使用这些组件会破坏应用程序防御，造成各种攻击产生严重的后果。</p>
+</blockquote>
+<p>原理：应用程序使用带有已知漏洞的组件会破坏应用程序防御系统，可能导致严重的数据丢失或服务器接管。</p>
+<p>  <em>修复方案：</em></p>
+<p>​    1.识别：正在使用的组件和版本，包括所有的依赖</p>
+<p>​    2.更新：组件或引用的库文件到最新</p>
+<p>​    3.建立安全策略：管理组件的使用</p>
+<h2 id="A10-不足的日志记录和监控"><a href="#A10-不足的日志记录和监控" class="headerlink" title="A10 不足的日志记录和监控"></a>A10 不足的日志记录和监控</h2><blockquote>
+<p>这个和等保有一定的关系，不作介绍，<code>不足的日志记录</code>和<code>监控</code>，以及<code>事件响应缺失</code>或<code>无效的集成</code>，使攻击者能够进一步攻击系统、保持持续性的或攻击更多的系统，以及对数据的不当操作。会造成数据丢失，服务器被接管等危害。</p>
+</blockquote>
+
+        
+      </div>
+    </div>
+
+  
+    </div>
+  
 
   
   
@@ -495,7 +1409,7 @@ The key fingerprint is:</code><br>这里是各种字母数字组成的字符串�
 
           <div class="main-footer">
   
-    © 2019 Hexo - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+    © 2020 Hexo - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
   
 </div>
 

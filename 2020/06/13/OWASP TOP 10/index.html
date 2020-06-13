@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    OWASP TOP 10
+  
+</title>
+
+<meta name="description" content="OWASP TOP 10 13年版已升级-2017版本  参考： https:&#x2F;&#x2F;blog.csdn.net&#x2F;wang_624&#x2F;article&#x2F;details&#x2F;89683571?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522159198134219725211934408%2522%252C%2522scm%2522%253A%25">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OWASP TOP 10">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;13&#x2F;OWASP%20TOP%2010&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="OWASP TOP 10 13年版已升级-2017版本  参考： https:&#x2F;&#x2F;blog.csdn.net&#x2F;wang_624&#x2F;article&#x2F;details&#x2F;89683571?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522159198134219725211934408%2522%252C%2522scm%2522%253A%25">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="c:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200613011531545.png">
+<meta property="og:image" content="c:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200613014910571.png">
+<meta property="og:updated_time" content="2020-06-13T05:59:34.286Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200613011531545.png">
+
+
+  <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+    class="monochrome"
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">Hexo</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">Hexo</a></h1>
+    
+    <div class="info">
+      <div class="content">
+        
+        
+          <div class="author">John Doe</div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="https://cn.gravatar.com/avatar/35fef74d731255cd569c2c2b0b9e87e4?s=200"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/" title="Homepage" external="false">Homepage</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/archives" title="By Year" external="false">By Year</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/denjones/hexo-theme-chan" title="Chan" target="_blank" rel="noopener">Chan</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="https://github.com/denjones" title="Github" target="_blank" rel="noopener">Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/atom.xml" title="RSS" external="false">RSS</a>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-OWASP TOP 10" class="article article-type-post">
+  
+    <h1 class="article-header">
+      OWASP TOP 10
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  2020-06-13
+</span>
+
+    
+
+    
+
+  </div>
+  <div class="article-entry">
+    <h1 id="OWASP-TOP-10"><a href="#OWASP-TOP-10" class="headerlink" title="OWASP TOP 10"></a>OWASP TOP 10</h1><blockquote>
+<p>13年版已升级-2017版本</p>
+</blockquote>
+<p>参考： <a href="https://blog.csdn.net/wang_624/article/details/89683571?ops_request_misc=%7B%22request%5Fid%22%3A%22159198134219725211934408%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&request_id=159198134219725211934408&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_ctr_v4-4-89683571.ecpm_v1_rank_ctr_v4&utm_term=owasp+top10" target="_blank" rel="noopener">https://blog.csdn.net/wang_624/article/details/89683571?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522159198134219725211934408%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=159198134219725211934408&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2<del>all</del>first_rank_ecpm_v1~rank_ctr_v4-4-89683571.ecpm_v1_rank_ctr_v4&amp;utm_term=owasp+top10</a> </p>
+<p>2：腾讯PPT2</p>
+<p>3.博客园 <a href="https://www.cnblogs.com/MI6plus/p/11488609.html" target="_blank" rel="noopener">https://www.cnblogs.com/MI6plus/p/11488609.html</a> </p>
+<h2 id="什么是OWASP"><a href="#什么是OWASP" class="headerlink" title="-什么是OWASP"></a>-什么是OWASP</h2><p>OWASP：非盈利组织开放式Web应用安全项目- Open Web Application Security Project，目前全球有130个分会近万名会员，其主要目标是研议协助解决Web软体安全之 标准、工具与技术文件，长期致力于协助政府或企业了解并改善网页应用程式与网页服务的安全性。</p>
+<p>最出名的是：</p>
+<p>OWASP TOP 10=“10项最严重的Web 应用程序安全风险列表” ，总结了Web应用程序最可能、最常见、最危险的十大漏洞，是开发、测试、服务、咨询人员应知应会的知识。</p>
+<p>OWASP TOP 变化</p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200613011531545.png" alt="image-20200613011531545"></p>
+<p>OWASP存在原因</p>
+<p>复杂的应用越来越多，开发者的能力也参差不齐，间接导致了应用程序存在安全风险。攻击者可以通过应用程序中许多不同的路径 方法去危害您的业务或者企业组织。每种路径方法都代表了一种风险， 这些风险可能会，也有可能不会严重到值得您去关注。</p>
+<h2 id="什么是OWASP-TOP-10"><a href="#什么是OWASP-TOP-10" class="headerlink" title="-什么是OWASP TOP 10"></a>-什么是OWASP TOP 10</h2><h2 id="A1注入-injection"><a href="#A1注入-injection" class="headerlink" title="A1注入(injection)"></a>A1注入(injection)</h2><blockquote>
+<p>将不安全的命令作为命令发送给解析器，会产生类似于<code>SQL注入、NoSQL注入、OS注入和LDAP注入</code>(<a href="https://baike.baidu.com/item/LDAP/2875565?fr=aladdin" target="_blank" rel="noopener">轻量目录访问协议</a>) 的缺陷，攻击者可以构造<code>恶意数据</code>通过注入缺陷的解析器执行没有权限的<code>非预期命令</code>或<code>访问数据</code>。</p>
+</blockquote>
+<p>常见的就是SQL注入</p>
+<h4 id="SQL注入"><a href="#SQL注入" class="headerlink" title="-SQL注入"></a>-SQL注入</h4><p>原理：把SQL命令插入到Web提交表单或者输入域名或者页面请求的 查询字符串中去，最终欺骗服务器执行恶意的SQL命令。</p>
+<p>//不被信任的应用程序发生的不可信数据诱解命令或者越权访问数据。</p>
+<p>存在原因：1）没有输入过滤。2）没有转义输出。</p>
+<p>建议：1）对数字类型参数——数字类型变换，再代入。</p>
+<p>2）过滤一些参数（GET/POST中对于SQL语言查询部分）</p>
+<p>3）对用户输入检查——特别字符，单引号双引号分号逗号冒号等——转换或过滤。</p>
+<p>4）使用白名单</p>
+<p>方式思路 :</p>
+<p>1）找到注入位置——2）判断服务器和数据库类型——3）对特点进行SQL注入攻击。</p>
+<h2 id="A2失效的身份认证"><a href="#A2失效的身份认证" class="headerlink" title="A2失效的身份认证"></a>A2失效的身份认证</h2><blockquote>
+<p>通过错误使用应用程序的<code>身份认证</code>和<code>会话管理功能</code>，</p>
+<p>攻击者能够<code>破译密码</code>、<code>密钥</code>或<code>会话令牌</code>，或者<code>暂时</code>或<code>永久</code>的冒充其他用户的身份。</p>
+</blockquote>
+<p> 原理：利用与认证和会话管理相关的应用程序功能得不到正确实施，导致攻击者破坏密码，密钥，会话令牌或实施漏洞冒充其他用户身份。</p>
+<p> 建议：1）使用内置的会话管理功能</p>
+<p> 2）通过认证的问候</p>
+<p> 3）使用单一的入口点 </p>
+<p>4）确保在一开始登录SSL保护的网页</p>
+<h2 id="A3-敏感数据泄露"><a href="#A3-敏感数据泄露" class="headerlink" title="A3 敏感数据泄露"></a>A3 敏感数据泄露</h2><blockquote>
+<p>这个比较好理解，一般我们的敏感信息包括<code>密码</code>、<code>财务数据</code>、<code>医疗数据</code>等，</p>
+<p>由于web应用或者API<code>未加密</code>或<code>不正确的保护敏感数据</code></p>
+<p>，这些数据极易遭到攻击者利用，攻击者可能使用这些数据来进行一些犯罪行为，因此，未加密的信息极易遭到破坏和利用，我们应该加强对敏感数据的保护，web应用应该在传输过程中数据、存储的数据以及和浏览器的交互时的数据进行加密，保证数据安全。</p>
+</blockquote>
+<p> 原理：由于管理员或者技术人员等各种原因导致敏感信息泄露</p>
+<p> 修复方案：1）对信息加密，运用加密和算法</p>
+<p>2）分类进行数据管理</p>
+<p>3）及时清除和标记数据</p>
+<p>4）禁止对数据的响应</p>
+<h2 id="A4外部实体-XXE"><a href="#A4外部实体-XXE" class="headerlink" title="A4外部实体(XXE)"></a>A4外部实体(XXE)</h2><blockquote>
+<p>XXE 全称为XML External Entity attack 即XML<a href="https://baike.baidu.com/item/可扩展标记语言/2885849?fromtitle=xml&fromid=86251&fr=aladdin" target="_blank" rel="noopener">(可扩展标记语言)</a> 外部实体注入攻击，早期或配置错误的XML处理器评估了XML文件外部实体引用，攻击者可以利用这个漏洞窃取URI(<a href="https://baike.baidu.com/item/URI/16481812" target="_blank" rel="noopener">统一资源标识符</a>)文件处理器的<code>内部文件</code>和<code>共享文件</code>、<code>监听内部扫描端口</code>、<code>执行远程代码</code>和实施<a href="https://baike.baidu.com/item/拒绝服务攻击/421896?fr=aladdin" target="_blank" rel="noopener">拒绝服务攻击</a>。</p>
+</blockquote>
+<p>建议：</p>
+<p>1）注意数据格式</p>
+<p>2）及时修复和更新应用</p>
+<p>3）服务器过滤数据</p>
+<h2 id="A5失效的访问控制"><a href="#A5失效的访问控制" class="headerlink" title="A5失效的访问控制"></a>A5失效的访问控制</h2><blockquote>
+<p>通过<code>身份验证</code>的用户，可以访问其他用户的相关信息，没有实施恰当的访问权限。攻击者可以利用这个漏洞去查看未授权的功能和数据，eg:<code>访问用户的账户</code>、<code>敏感文件</code>、<code>获取和正常用户相同的权限</code>等.</p>
+</blockquote>
+<p> 原理：这个漏洞也是与认证相关的，这种漏洞具体是指在系统已经对url的访问做了限制的情况下，但这种限制并没有生效。</p>
+<p>常见：1）系统没有对用户进行角色的检查</p>
+<p>2）用户通过修改URL的action并指向未被授权页面就能访问该页面同样是个漏洞 </p>
+<p>还是与越权有关。</p>
+<p>  修复方案：</p>
+<p>1.检查管理权限的过程并确保能够容易进行升级和审计</p>
+<p>2.默认缺省情况下，拒绝访问。并且及时删除无用。</p>
+<p>对于每个功能得访问，需要明确的角色授权。</p>
+<p>3.检查每个功能分配的权限合理有效。</p>
+<p>4.</p>
+<h2 id="A6-安全配置错误"><a href="#A6-安全配置错误" class="headerlink" title="A6 安全配置错误"></a>A6 安全配置错误</h2><blockquote>
+<p>安全配置错误是比较常见的漏洞，由于操作者的<code>不当配置</code>(默认配置，临时配置，开源云存储，http标头配置，以及包含敏感信息的详细错误)，</p>
+<p>导致攻击者可以利用这些配置获取到更高的权限，安全配置错误可以发生在各个层面，包含平台、web服务器、应用服务器、数据库、架构和代码。</p>
+</blockquote>
+<p> 原理：安全配置错误可以发生在一个应用程序堆栈的任何层面，</p>
+<p>包括平台，web服务器，应用服务器，数据库，架构和自定义的代码。</p>
+<p>攻击者通过访问默认账户，未使用的网页，未安装的补丁的漏洞，未被保护的文件和目录等，以获得对系统为授权的访问</p>
+<p>  修复方案：</p>
+<p>1.自动化安装部署</p>
+<p>2.及时了解并部署每个环节的    软件更新和补丁信息</p>
+<p>3.实施漏洞扫描和安全审计</p>
+<h2 id="A7-跨站脚本（xss）"><a href="#A7-跨站脚本（xss）" class="headerlink" title="A7 跨站脚本（xss）"></a>A7 跨站脚本（xss）</h2><blockquote>
+<p>xss攻击全称为<a href="https://baike.baidu.com/item/XSS攻击/954065?fr=aladdin" target="_blank" rel="noopener">跨站脚本攻击</a>，跨站脚本攻击的英文全称是Cross Site Script，为了和样式表区分，缩写为XSS。</p>
+<p>当应用程序的新网页中包含<code>不受信任的</code>、<code>未经恰当验证</code>、<code>转义的数据</code>或可以使用<code>HTML、JavaScript的浏览器API更新的现有网页</code>时，就会出现xss漏洞，跨站脚本攻击是<code>最普遍</code>的web应用安全漏洞，甚至在某些安全平台都存在xss漏洞。</p>
+<p>xss会执行攻击者在浏览器中执行的脚本，并劫持用户会话，破坏网站或用户重定向到恶意站点，使用xss还可以执行拒绝服务攻击。</p>
+</blockquote>
+<p>原理：</p>
+<p>发生的原因是网站将用户输入的内容输出到页面上，在这个过程中可能有恶意代码被浏览器执行。</p>
+<p>跨站脚本攻击,它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意用户的特殊目的。</p>
+<p>XSS属于被动式的攻击，因为其被动且不好利用，所以许多人常忽略其危害性。而本文主要讲的是利用XSS得到目标服务器的shell。技术虽然是老技术，但是其思路希望对大家有帮助。</p>
+<p>已知的跨站脚本攻击漏洞有三种：</p>
+<p>1）存储式；2）反射式；3）基于DOM。</p>
+<p>​    1、 存储型跨站脚本攻击涉及的功能点：用户输入的文本信息保存到数据库中，并能够在页面展示的功能点，例如用户留言、发送站内消息、个人信息修改等功能点。</p>
+<p>​    2、 反射型跨站脚本攻击涉及的功能点：URL参数需要在页面显示的功能点都可能存在反射型跨站脚本攻击，例如站内搜索、查询功能点。</p>
+<p>​    3、 基于DOM跨站脚本攻击涉及的功能点：涉及DOM对象的页面程序，包括（不限这些）：</p>
+<p>​    </p>
+<p>修复方案： 总体修复方式：验证所有输入数据，有效检测攻击；对所有输出数据进行适当的编码，以防止任何已成功注入的脚本在浏览器端运行。具体如下 ：</p>
+<p>​    1、 输入验证：某个数据被接受为可被显示或存储之前，使用标准输入验证机制，验证所有输入数据的长度、类型、语法以及业务规则。</p>
+<p>​    2、 输出编码：数据输出前，确保用户提交的数据已被正确进行entity编码，建议对所有字符进行编码而不仅局限于某个子集。</p>
+<p>​    3、 明确指定输出的编码方式：不要允许攻击者为你的用户选择编码方式(如ISO 8859-1或 UTF 8)。</p>
+<p>​    4、 注意黑名单验证方式的局限性：仅仅查找或替换一些字符(如”&lt;” “&gt;”或类似”script”的关键字)，很容易被XSS变种攻击绕过验证机制。</p>
+<p>​    5、 警惕规范化错误：验证输入之前，必须进行解码及规范化以符合应用程序当前的内部表示方法。请确定应用程序对同一输入不做两次解码。对客户端提交的数据进行过滤，一般建议过滤掉双引号（”）、尖括号（&lt;、&gt;）等特殊字符，或者对客户端提交的数据中包含的特殊字符进行实体转换，比如将双引号（”）转换成其实体形式&quot;，&lt;对应的实体形式是&lt;，&lt;对应的实体形式是&gt;以下为需过滤的常见字符：</p>
+<p><img src="C:%5CUsers%5CDell%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200613014910571.png" alt="image-20200613014910571"></p>
+<h2 id="A8不安全的反序列化"><a href="#A8不安全的反序列化" class="headerlink" title="A8不安全的反序列化"></a>A8不安全的反序列化</h2><blockquote>
+<p>不安全的反序列化可以导致<a href="https://baike.baidu.com/item/远程代码执行漏洞/2491231?fr=aladdin" target="_blank" rel="noopener">远程代码执行</a>、<a href="https://baike.baidu.com/item/重放攻击?fromtitle=重播攻击&fromid=19455997" target="_blank" rel="noopener">重放攻击</a>、注入攻击或特权升级攻击</p>
+</blockquote>
+<h2 id="A9使用含有已知漏洞的组件"><a href="#A9使用含有已知漏洞的组件" class="headerlink" title="A9使用含有已知漏洞的组件"></a>A9使用含有已知漏洞的组件</h2><blockquote>
+<p><a href="https://baike.baidu.com/item/组件/6902128?fr=aladdin" target="_blank" rel="noopener">组件</a>(eg：库、框架或其他软件模块)拥有应用程序相同的权限，如果应用程序中含有已知漏洞，攻击者可以利用漏洞获取数据或接管服务器。同时，使用这些组件会破坏应用程序防御，造成各种攻击产生严重的后果。</p>
+</blockquote>
+<p>原理：应用程序使用带有已知漏洞的组件会破坏应用程序防御系统，可能导致严重的数据丢失或服务器接管。</p>
+<p>  <em>修复方案：</em></p>
+<p>​    1.识别：正在使用的组件和版本，包括所有的依赖</p>
+<p>​    2.更新：组件或引用的库文件到最新</p>
+<p>​    3.建立安全策略：管理组件的使用</p>
+<h2 id="A10-不足的日志记录和监控"><a href="#A10-不足的日志记录和监控" class="headerlink" title="A10 不足的日志记录和监控"></a>A10 不足的日志记录和监控</h2><blockquote>
+<p>这个和等保有一定的关系，不作介绍，<code>不足的日志记录</code>和<code>监控</code>，以及<code>事件响应缺失</code>或<code>无效的集成</code>，使攻击者能够进一步攻击系统、保持持续性的或攻击更多的系统，以及对数据的不当操作。会造成数据丢失，服务器被接管等危害。</p>
+</blockquote>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.e" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+
+
+
+          <div class="main-footer">
+  
+    © 2020 Hexo - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>

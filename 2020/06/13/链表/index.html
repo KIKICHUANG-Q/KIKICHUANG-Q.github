@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    链表
+  
+</title>
+
+<meta name="description" content="链表1.首先得要有两个基本的头文件1#include&amp;lt;stdio.h&amp;gt;       &#x2F;&#x2F;用于scanf, printf 标准输入输出 #include&amp;lt;stdlib.h&amp;gt;      &#x2F;&#x2F;用于malloc, free 内存申请及释放  2.再然后得要有个结构体 一个节点就像火车的一节车厢, data是车厢里面的东西, next相当于一个钩子, 用于将车厢之间的连接起来   1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链表">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;13&#x2F;%E9%93%BE%E8%A1%A8&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="链表1.首先得要有两个基本的头文件1#include&amp;lt;stdio.h&amp;gt;       &#x2F;&#x2F;用于scanf, printf 标准输入输出 #include&amp;lt;stdlib.h&amp;gt;      &#x2F;&#x2F;用于malloc, free 内存申请及释放  2.再然后得要有个结构体 一个节点就像火车的一节车厢, data是车厢里面的东西, next相当于一个钩子, 用于将车厢之间的连接起来   1">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdn.net&#x2F;20180824225044595?watermark&#x2F;2&#x2F;text&#x2F;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L01yX0hDVw==&#x2F;font&#x2F;5a6L5L2T&#x2F;fontsize&#x2F;400&#x2F;fill&#x2F;I0JBQkFCMA==&#x2F;dissolve&#x2F;70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdn.net&#x2F;20180824225744685?watermark&#x2F;2&#x2F;text&#x2F;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L01yX0hDVw==&#x2F;font&#x2F;5a6L5L2T&#x2F;fontsize&#x2F;400&#x2F;fill&#x2F;I0JBQkFCMA==&#x2F;dissolve&#x2F;70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdnimg.cn&#x2F;20200407211022740.png?x-oss-process=image&#x2F;watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NwcmltZXNwbHVz,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https:&#x2F;&#x2F;img-blog.csdn.net&#x2F;20180910122645943?watermark&#x2F;2&#x2F;text&#x2F;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NwcmltZXNwbHVz&#x2F;font&#x2F;5a6L5L2T&#x2F;fontsize&#x2F;400&#x2F;fill&#x2F;I0JBQkFCMA==&#x2F;dissolve&#x2F;70">
+<meta property="og:updated_time" content="2020-05-16T12:46:01.280Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;img-blog.csdn.net&#x2F;20180824225044595?watermark&#x2F;2&#x2F;text&#x2F;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L01yX0hDVw==&#x2F;font&#x2F;5a6L5L2T&#x2F;fontsize&#x2F;400&#x2F;fill&#x2F;I0JBQkFCMA==&#x2F;dissolve&#x2F;70">
+
+
+  <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+    class="monochrome"
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">Hexo</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">Hexo</a></h1>
+    
+    <div class="info">
+      <div class="content">
+        
+        
+          <div class="author">John Doe</div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="https://cn.gravatar.com/avatar/35fef74d731255cd569c2c2b0b9e87e4?s=200"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">Category</a>
+                
+              </li>
+            
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">3</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/" title="Homepage" external="false">Homepage</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/archives" title="By Year" external="false">By Year</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/denjones/hexo-theme-chan" title="Chan" target="_blank" rel="noopener">Chan</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="https://github.com/denjones" title="Github" target="_blank" rel="noopener">Github</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/atom.xml" title="RSS" external="false">RSS</a>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-链表" class="article article-type-post">
+  
+    <h1 class="article-header">
+      链表
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  2020-06-13
+</span>
+
+    
+
+    
+
+  </div>
+  <div class="article-entry">
+    <h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><h3 id="1-首先得要有两个基本的头文件"><a href="#1-首先得要有两个基本的头文件" class="headerlink" title="1.首先得要有两个基本的头文件"></a>1.首先得要有两个基本的头文件</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;       //用于scanf, printf 标准输入输出 #include&lt;stdlib.h&gt;      //用于malloc, free 内存申请及释放</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-再然后得要有个结构体"><a href="#2-再然后得要有个结构体" class="headerlink" title="2.再然后得要有个结构体"></a>2.再然后得要有个结构体</h3><blockquote>
+<p>一个节点就像火车的一节车厢, data是车厢里面的东西, next相当于一个钩子, 用于将车厢之间的连接起来</p>
+</blockquote>
+<p><img src="https://img-blog.csdn.net/20180824225044595?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L01yX0hDVw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span>          //<span class="title">typedef</span> 用于取<span class="title">struct</span> <span class="title">node</span> 的别名</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">        <span class="keyword">int</span> data;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;*PNODE,NODE;                <span class="comment">//别名*PNODE 就是 struct node *   别名NODE就是 struct node</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-这部分是函数前置声明"><a href="#3-这部分是函数前置声明" class="headerlink" title="3. 这部分是函数前置声明"></a>3. 这部分是函数前置声明</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">PNODE <span class="title">init</span><span class="params">()</span></span>;                           <span class="comment">//链表初始化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(PNODE head, <span class="keyword">int</span> newdata)</span></span>;   <span class="comment">//插入节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(PNODE head)</span></span>;                 <span class="comment">//打印整个链表</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">freeAllNode</span><span class="params">(PNODE head)</span></span>;           <span class="comment">//释放整个链表的内存</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-链表初始化"><a href="#4-链表初始化" class="headerlink" title="4.链表初始化"></a>4.链表初始化</h3><blockquote>
+<p>定义一个节点, 其在整个链表操作中都不存储数据, 比较特殊, 与head直接相连</p>
+</blockquote>
+<p><img src="https://img-blog.csdn.net/20180824225744685?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L01yX0hDVw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">PNODE <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;	PNODE temp = (PNODE)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(NODE));  <span class="comment">//定义一个节点	</span></span><br><span class="line">             temp-&gt;next = <span class="literal">NULL</span>;                    <span class="comment">//这个节点比较特殊, 它不用于存储数据	</span></span><br><span class="line"> <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>////剩下的看程序即可。</p>
+<h1 id="关于创建单链表-createlink"><a href="#关于创建单链表-createlink" class="headerlink" title="关于创建单链表(createlink)"></a>关于创建单链表(createlink)</h1><h3 id="1-Head"><a href="#1-Head" class="headerlink" title=" 1 Head"></a> 1 Head</h3><p> 如果想得到创建后的链表，我们显然需要知道他的头在哪。</p>
+<p>因此在Createlink()函数中，需要返回head(也就是这条链子的头部)，这样顺着头我们就可以一直找到链表的每一个元素，直到尾部(p若为最后一个链结的话，那么p-&gt;next==NULL)。</p>
+<p> <img src="https://img-blog.csdnimg.cn/20200407211022740.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NwcmltZXNwbHVz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"> </p>
+<p> 因为需要返回head这个指针 </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">struct node *<span class="title">createlink</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//.....这些是创建的过程</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> head;</span><br><span class="line"></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>返回值类型搞定之后，我们便可以进入创建链表的环节.</p>
+<h3 id="2-创造链表"><a href="#2-创造链表" class="headerlink" title="2.创造链表"></a>2.创造链表</h3><p><strong>单链表分为两种：</strong><br>（1）不带头节点 的链表：</p>
+<p>此种链表的head即保存第一个数据，</p>
+<p>访问时从head开始，不利于删除或者添加指定位置数据的操作。<br>（2）带头节点 的链表：</p>
+<p>此种链表保存数据是从head-&gt;next开始的，head中并未保存有数据，</p>
+<p>访问时自然<strong>head-&gt;next</strong>开始，优点就是方便操作。</p>
+<p><strong>这里先以不带头节点的链表的创建为例</strong></p>
+<p>（我采用创建链表的方法叫做尾插法——每新建立一个节点，都把它放到现有链表的尾部）<br>  首先，我们需要有一个结构体指针来保存头节点，方便于之后的使用，所以：struct node <em>head;<br>  注意：这里的head是不能变的，,*</em>不变的意思不是他的值不变，而是他永远固定在链表的首位，作为链表的头部**，方便之后的索引。<br>  因此，当我们每新加入一个元素时，不是直接更新head的值。不妨用一个结构体指针pnew来记录新加入的值，通过旧节点pend与新节点的相连来构造一个链表，示意图如下：</p>
+<p><img src="https://img-blog.csdn.net/20180910122645943?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NwcmltZXNwbHVz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p>​        显然，pend所指向的单位，实际就是上一次的pnew（可以理解为，pnew作为新元素被成功加入到链表之后，它便变成了旧节点，两个字概括为：<strong>更替</strong>）</p>
+<p>  欸？是不是还有一个变量忘了声明？没错，那就是整型n，用来表示新加入的值。这样我们便可以<strong>通过输入n并且给节点赋值，只要输入不为-1，那么继续进行输入</strong>，否则终止循环。</p>
+<h4 id="不带头节点单链表代码的实现："><a href="#不带头节点单链表代码的实现：" class="headerlink" title="不带头节点单链表代码的实现："></a><strong>不带头节点单链表代码的实现：</strong></h4><p>  首先，我们定义head,最初的时候链表还没有添加元素，因此head=NULL;<br>  然后，输入一个元素代表将要添加的值。判断元素是否符合条件（这里以元素&gt;=0为条件），如果满足，就进入添加环节。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num);</span><br><span class="line"><span class="keyword">while</span>(num&gt;=<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">//操作</span></span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num);</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">123456</span></span><br></pre></td></tr></table></figure>
+
+<p>在循环中，因为要添加值，所以要先为pnew分配内存，这样才能对pnew进行赋值操作。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pnew=(struct node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(struct node));</span><br><span class="line">pnew-&gt;num=num;</span><br><span class="line">pnew-&gt;next=<span class="literal">NULL</span>; <span class="comment">//新创建的指针的下一个位置还没有定</span></span><br><span class="line"><span class="number">123</span></span><br></pre></td></tr></table></figure>
+
+<p>  因为我们想要创建不带头节点的单链表，因此如果是第一次添加值（第一次添加的判断是，如果head指向NULL，证明还未加入元素），那么head就应该指向pnew的位置，然后pnew（也就是head）的位置变为旧位置pend。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(head==<span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">	head=pnew;</span><br><span class="line">	pend=head;</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">12345</span></span><br></pre></td></tr></table></figure>
+
+<p>  如果不是第一次添加了，那么此时存放旧地址的就应该是pend，观察上图，只需要如下操作进行连接就可以了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">	pend-&gt;next=pnew;</span><br><span class="line">	pend=pnew;<span class="comment">//一定注意，操作的位置是内存</span></span><br><span class="line">	<span class="comment">//因此进行上面一步之后，pend-&gt;next这块内存已经有了指向</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="number">12345</span></span><br></pre></td></tr></table></figure>
+
+<p>这样，便成功创建了不带头节点的单链表。</p>
+<p><strong>完整代码</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num);</span><br><span class="line"><span class="keyword">while</span>(num&gt;=<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">	pnew=(struct node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(struct node));</span><br><span class="line">	pnew-&gt;num=num;</span><br><span class="line">	pnew-&gt;next=<span class="literal">NULL</span>; <span class="comment">//新创建的指针的下一个位置还没有定</span></span><br><span class="line">	<span class="keyword">if</span>(head==<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		head=pnew;</span><br><span class="line">		pend=head;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		pend-&gt;next=pnew;</span><br><span class="line">		pend=pnew;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;num);</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">123456789101112131415161718</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="带头节点单链表代码的实现："><a href="#带头节点单链表代码的实现：" class="headerlink" title="带头节点单链表代码的实现："></a><strong>带头节点单链表代码的实现：</strong></h4><p>  带有头节点的单链表创立，只需稍微改变代码即可。<br>  既然是带有头节点，那么头节点里肯定是不需要赋值的，因此在创建时，我们直接最开始就让头节点作为旧节点，这样头节点就可以不用被赋值了。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">head=(struct node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(struct node));</span><br><span class="line">head-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">pend=head;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">While(n!=<span class="number">-1</span>)</span><br><span class="line">&#123;</span><br><span class="line">	pnew=(struct node *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(struct node));	<span class="comment">//这里一定要为pnew开辟内存！</span></span><br><span class="line">	<span class="comment">//想象一下，你无法int *a;后直接赋值a=3;必须先分配内存，同理。</span></span><br><span class="line">	pnew-&gt;num=n;</span><br><span class="line">	pnew-&gt;next=<span class="literal">NULL</span>;<span class="comment">//新节点指向空，因为后面还没有元素加入</span></span><br><span class="line">	pend-&gt;next=pnew;	<span class="comment">//旧节点的指针指向新节点</span></span><br><span class="line">	pend=pnew;		<span class="comment">//新节点变为旧节点</span></span><br><span class="line">	<span class="built_in">scanf</span>(“%d”,&amp;n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.e" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+
+
+
+          <div class="main-footer">
+  
+    © 2020 Hexo - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>
